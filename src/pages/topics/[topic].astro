@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+import { getReadingTime } from "../../utils/readingTime";
+
+export async function getStaticPaths() {
+  const topicLabels = {
+    electronics: "Electronics",
+    ai: "AI",
+    robotics: "Robotics"
+  };
+  
+  return Object.keys(topicLabels).map((topic) => ({
+    params: { topic },
+    props: { topic }
+  }));
+}
+
+const { topic } = Astro.props;
+
+const topicLabels = {
+  electronics: "Electronics",
+  ai: "AI",
+  robotics: "Robotics"
+};
+const allPosts = await getCollection("blog");
+const posts = allPosts
+  .filter((post) => !post.data.draft)
+  .filter((post) => post.data.topic === topic)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title={`${topicLabels[topic]} Posts`} description={`Posts about ${topicLabels[topic]}.`}>
+  <section class="section">
+    <div class="container">
+      <div class="page-intro">
+        <h1>{topicLabels[topic]}</h1>
+        <p class="hero-subtitle">Focused posts on {topicLabels[topic]}.</p>
+      </div>
+
+      {posts.length === 0 && (
+        <p>No posts in this topic yet.</p>
+      )}
+
+      <div class="blog-list">
+        {posts.map((post) => (
+          <BlogCard
+            href={`/blog/${post.slug}/`}
+            title={post.data.title}
+            description={post.data.description}
+            topic={post.data.topic}
+            pubDate={post.data.pubDate}
+            updatedDate={post.data.updatedDate}
+            tags={post.data.tags}
+            readingTime={getReadingTime(post.body)}
+            heroImage={post.data.heroImage}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

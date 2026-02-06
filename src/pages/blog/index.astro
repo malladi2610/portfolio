@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+import { getReadingTime } from "../../utils/readingTime";
+
+const allPosts = await getCollection("blog");
+const posts = allPosts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Blog" description="All articles and notes.">
+  <section class="section">
+    <div class="container">
+      <div class="page-intro">
+        <h1>Blog</h1>
+        <p class="hero-subtitle">Articles across Electronics, AI, and Robotics.</p>
+      </div>
+
+      {posts.length === 0 && (
+        <p>No posts yet. Check back soon.</p>
+      )}
+
+      <div class="blog-list">
+        {posts.map((post) => (
+          <BlogCard
+            href={`/blog/${post.slug}/`}
+            title={post.data.title}
+            description={post.data.description}
+            topic={post.data.topic}
+            pubDate={post.data.pubDate}
+            updatedDate={post.data.updatedDate}
+            tags={post.data.tags}
+            readingTime={getReadingTime(post.body)}
+            heroImage={post.data.heroImage}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import "../styles/global.css";
+import { siteConfig } from "../config/site";
+import ViewPing from "../components/ViewPing.astro";
+
+const { title, description, ogImage } = Astro.props;
+const pageTitle = title ? `${title} | Subhash` : "Subhash";
+const pageDescription = description || "Portfolio and writing in Electronics, AI, and Robotics.";
+const canonical = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+  </head>
+  <body>
+    <ViewPing />
+    <header class="site-header">
+      <a class="site-logo" href="/">Subhash</a>
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <span>Copyright {new Date().getFullYear()} Subhash</span>
+      <span>Built with Astro</span>
+    </footer>
+  </body>
+</html>

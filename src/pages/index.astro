@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const topics = [
+  { slug: "electronics", label: "Electronics" },
+  { slug: "ai", label: "AI" },
+  { slug: "robotics", label: "Robotics" }
+];
+---
+
+<BaseLayout title="Home" description="Portfolio and blog on Electronics, AI, and Robotics.">
+  <section class="hero">
+    <div class="bubble corner" aria-hidden="true"></div>
+    <div class="bubble small" aria-hidden="true"></div>
+    <div class="bubble medium" aria-hidden="true"></div>
+    <div class="bubble large" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <h1 class="hero-title">Electronics | AI | Robotics</h1>
+      <p class="hero-subtitle">
+        Focused writing and projects across systems, intelligence, and autonomous machines.
+      </p>
+
+      <div class="topic-row" role="navigation" aria-label="Topic navigation">
+        <a class="topic-card" href={`/topics/${topics[0].slug}/`}>
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="10" y="10" width="44" height="44" rx="6" fill="#7bd0ff" />
+            <rect x="18" y="18" width="28" height="28" rx="4" fill="#f4f8ff" />
+            <rect x="6" y="26" width="8" height="12" fill="#7bd0ff" />
+            <rect x="50" y="26" width="8" height="12" fill="#7bd0ff" />
+            <rect x="26" y="6" width="12" height="8" fill="#7bd0ff" />
+            <rect x="26" y="50" width="12" height="8" fill="#7bd0ff" />
+          </svg>
+          <div class="topic-label">{topics[0].label}</div>
+        </a>
+
+        <div class="hero-divider" aria-hidden="true"></div>
+
+        <a class="topic-card" href={`/topics/${topics[1].slug}/`}>
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="24" cy="32" r="14" fill="#6ab3ff" />
+            <circle cx="40" cy="24" r="10" fill="#9bd0ff" />
+            <circle cx="42" cy="42" r="8" fill="#2c6bff" />
+            <circle cx="24" cy="18" r="3" fill="#ffd34d" />
+            <circle cx="14" cy="38" r="3" fill="#ffd34d" />
+            <circle cx="42" cy="12" r="3" fill="#ffd34d" />
+            <circle cx="52" cy="36" r="3" fill="#ffd34d" />
+            <circle cx="34" cy="50" r="3" fill="#ffd34d" />
+          </svg>
+          <div class="topic-label">{topics[1].label}</div>
+        </a>
+
+        <div class="hero-divider" aria-hidden="true"></div>
+
+        <a class="topic-card" href={`/topics/${topics[2].slug}/`}>
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="16" y="18" width="32" height="28" rx="6" fill="#7ef3c0" />
+            <rect x="22" y="24" width="20" height="12" rx="2" fill="#11253e" />
+            <circle cx="26" cy="30" r="3" fill="#6bd0ff" />
+            <circle cx="38" cy="30" r="3" fill="#6bd0ff" />
+            <rect x="30" y="8" width="4" height="8" fill="#7ef3c0" />
+            <circle cx="32" cy="6" r="4" fill="#6bd0ff" />
+          </svg>
+          <div class="topic-label">{topics[2].label}</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="page-intro">
+        <h2>Latest Writing</h2>
+        <p class="hero-subtitle">Explore deep dives and practical notes across my core domains.</p>
+      </div>
+      <div class="topic-grid">
+        {topics.map((topic) => (
+          <a class="topic-card" href={`/topics/${topic.slug}/`}>
+            <div class="topic-label">Browse {topic.label}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

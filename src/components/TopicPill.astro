@@ -1,0 +1,5 @@
+---
+const { topic } = Astro.props;
+const label = topic === "ai" ? "AI" : topic === "robotics" ? "Robotics" : "Electronics";
+---
+<span class={`topic-pill topic-${topic}`}>{label}</span>

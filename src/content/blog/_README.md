@@ -1,0 +1,17 @@
+# Blog Template Usage
+
+1. Copy `TEMPLATE.md` and rename it to your new post slug, for example `my-first-post.md`.
+2. Fill in the frontmatter fields at the top of the file.
+3. Place images in `/public/images/blog/` and link them with `/images/blog/...`.
+4. Set `draft: false` when the post is ready to publish.
+
+## Frontmatter Fields
+
+- `title`: The post title shown on the page.
+- `description`: Short summary used in previews and SEO.
+- `pubDate`: Publish date in `YYYY-MM-DD`.
+- `updatedDate`: Optional update date in `YYYY-MM-DD`.
+- `topic`: One of `electronics`, `ai`, `robotics`.
+- `tags`: Optional list of tags.
+- `heroImage`: Optional hero image path.
+- `draft`: Set to `true` to hide the post.

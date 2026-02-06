@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+
+const hasEndpoint = !siteConfig.contactFormEndpoint.includes("your-form-id");
+---
+
+<BaseLayout title="Contact" description="Get in touch.">
+  <section class="section">
+    <div class="container">
+      <div class="page-intro">
+        <h1>Contact</h1>
+        <p class="hero-subtitle">Send a message and I will reply as soon as possible.</p>
+      </div>
+
+      {!hasEndpoint && (
+        <p>
+          Form endpoint is not configured yet. Update `src/config/site.ts` with your Formspree URL.
+        </p>
+      )}
+
+      <form class="form" method="POST" action={siteConfig.contactFormEndpoint}>
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Your name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@email.com" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="6" placeholder="How can I help?" required></textarea>
+        </label>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
