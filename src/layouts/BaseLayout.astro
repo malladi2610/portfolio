@@ -6,7 +6,10 @@ import ViewPing from "../components/ViewPing.astro";
 const { title, description, ogImage } = Astro.props;
 const pageTitle = title ? `${title} | Subhash` : "Subhash";
 const pageDescription = description || "Portfolio and writing in Electronics, AI, and Robotics.";
-const canonical = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
+const normalizedSiteUrl = /^https?:\/\//.test(siteConfig.siteUrl)
+  ? siteConfig.siteUrl
+  : `https://${siteConfig.siteUrl}`;
+const canonical = new URL(Astro.url.pathname, normalizedSiteUrl).toString();
 ---
 <!doctype html>
 <html lang="en">

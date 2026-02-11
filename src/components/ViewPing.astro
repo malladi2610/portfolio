@@ -3,8 +3,8 @@ import { siteConfig } from "../config/site";
 const enabled = siteConfig.viewPingUrl && !siteConfig.viewPingUrl.includes("your-script-id");
 ---
 {enabled && (
-  <script is:inline>
-    const url = {JSON.stringify(siteConfig.viewPingUrl)};
+  <script is:inline define:vars={{ viewPingUrl: siteConfig.viewPingUrl }}>
+    const url = viewPingUrl;
     try {
       fetch(url, {
         method: "POST",
