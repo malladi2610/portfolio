@@ -3,8 +3,8 @@
 title: "Epsilon NES Emulator in Rust: Architecture, Mappers, and Audio Integration"
 description: "A modular NES emulator in Rust implementing 6502 CPU, PPU integration, NROM/MMC1 mappers, unofficial opcodes, and partial APU support."
 pubDate: 2026-02-12
-updatedDate:
-topic: embedded-systems
+updatedDate: 2026-02-12
+topic: "electronics"
 tags: ["rust", "emulator", "6502", "nes", "systems-programming"]
 heroImage: "/images/blog/nes_emulator/project_architecture/project_architecture.png"
 draft: false
