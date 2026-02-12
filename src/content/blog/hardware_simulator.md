@@ -7,8 +7,8 @@ updatedDate: 2026-02-12
 topic: "electronics"
 tags: ["rust", "arm-cortex-m3", "uart", "bare-metal", "qemu"]
 heroImage: "/images/blog/lm3s6965-uart-architecture-hero.png"
-draft: true
------------
+draft: false
+---
 
 # Bare-Metal Rust on ARM: UART Driver and Fault-Tolerant Protocol on LM3S6965
 
