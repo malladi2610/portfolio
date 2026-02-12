@@ -8,7 +8,7 @@ topic: embedded-systems
 tags: ["rust", "emulator", "6502", "nes", "systems-programming"]
 heroImage: "/images/blog/nes_emulator/project_architecture/project_architecture.png"
 draft: false
------------
+---
 
 # Epsilon NES Emulator in Rust: Architecture, Mappers, and Audio Integration
 
