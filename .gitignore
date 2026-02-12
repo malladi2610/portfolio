@@ -5,3 +5,7 @@ dist/
 .env.*
 .DS_Store
 docs/Reference_materials/
+docs/DCD_data/
+scripts/dcd_pipeline/evidence/
+scripts/dcd_pipeline/state/actions.jsonl
+scripts/dcd_pipeline/state/checkpoints.json

@@ -1,0 +1,38 @@
+{
+  "browser_cmd": "/tmp/browser-use-venv/bin/uvx browser-use[cli]",
+  "browser_mode": "real",
+  "browser_profile": "Default",
+  "headed": true,
+  "sessions": {
+    "dcd": "dcd_companies",
+    "linkedin": "linkedin_contacts",
+    "hunter": "hunter_email"
+  },
+  "dcd_participants_url": "",
+  "output_file": "docs/dcd_2026_contacts.jsonl",
+  "checkpoint_file": "scripts/dcd_pipeline/state/checkpoints.json",
+  "action_log_file": "scripts/dcd_pipeline/state/actions.jsonl",
+  "screenshot_dir": "scripts/dcd_pipeline/evidence/screenshots",
+  "batch_size": 20,
+  "source_scroll_max": 120,
+  "source_scroll_stagnation_limit": 6,
+  "retry_attempts": 3,
+  "retry_backoff_seconds": 2.0,
+  "confidence_threshold": 0.85,
+  "min_contacts_per_company": 5,
+  "max_contacts_per_company": 6,
+  "hr_contacts_min": 2,
+  "hr_contacts_max": 3,
+  "technical_contacts_min": 2,
+  "technical_contacts_max": 3,
+  "linkedin_active_window_months": 12,
+  "models": {
+    "classification_fast": "gpt-5-mini",
+    "classification_strong": "gpt-5"
+  },
+  "hunter": {
+    "mode": "portal",
+    "portal_query_url_template": "https://hunter.io/search/{domain}",
+    "high_confidence_score": 80
+  }
+}
