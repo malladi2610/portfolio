@@ -60,5 +60,5 @@ The Report and the Github can be found here:
 
 You can view the full architecture of our memory mapping below:
 
-![MMC1 Mapper Architecture](public/images/blog/nes_emulator/project_architecture/project_architecture.png)
+![MMC1 Mapper Architecture](/public/images/blog/nes_emulator/project_architecture/project_architecture.png)
 *Figure: The complex memory mapping required for the MMC1 implementation.*
