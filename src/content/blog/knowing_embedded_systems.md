@@ -3,7 +3,7 @@ title: "How Much Embedded Systems Knowledge Is Enough for the Job?"
 description: "A stage-based way to judge embedded skills using simulation, prototype, and MVP implementation expectations."
 pubDate: 2026-02-15
 updatedDate: 2026-02-15
-topic: embedded-systems
+topic: "electronics"
 tags: ["embedded-systems", "firmware", "mcu", "debugging", "rtos", "career"]
 heroImage: "/images/blog/knowing-how-much-embedded-is-enough-hero.png"
 draft: false
