@@ -1,5 +1,5 @@
 ---
-title: "The Reality of Embedded Engineering: Building a NES Emulator from Scratch"
+title: "Building a NES Emulator from Scratch"
 description: "A deep dive into a 4-week sprint to build a NES emulator in Rust, navigating CPU simulation, memory mapping, and debugging external library failures."
 pubDate: 2026-02-12
 updatedDate: 2026-02-12
@@ -8,9 +8,6 @@ tags: ["rust", "emulator", "6502", "nes", "systems-programming", "debugging"]
 heroImage: ""
 draft: false
 ---
-
-# Building a NES Emulator from Scratch
-
 When people ask me what "embedded systems engineering" actually looks like, I point them to this project. In late 2023, I worked with a team of four engineers to architect a Nintendo Entertainment System (NES) emulator in Rust. We operated under a strict four-week deadline. The goal wasn't just to make a game run; it was to replicate the architecture of a 1985 console—the CPU, the PPU (graphics), and the mappers—while adhering to strict Rust standards like Enums and Traits.
 
 Looking back, the project didn't just happen all at once. It naturally evolved through three distinct phases: Simulation, Prototype, and a final Implementation where we hit—and solved—our biggest engineering roadblocks.
