@@ -7,8 +7,13 @@ updatedDate: 2026-02-15
 topic: "electronics"
 tags: ["iot", "hydroponics", "arduino", "mqtt", "flutter", "sensors"]
 heroImage: "/images/blog/apex-hero.png"
-draft: false
+draft: true
 ---
+# My experieces
+1. It was the first bachelors project I have done and also the first IoT project with Data transmission
+2. THis was the project that I did in place of the assignemnt where everyone in class went with the assignment and me and my friend did a project
+3. It was actually a recreating of an exisiting project from where the idea was taken as "Giving plants an expression is a unique concept"
+
 
 # APEX: IoT-Based Hydroponics Monitoring and Plant “Emotion” Feedback System
 

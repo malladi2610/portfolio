@@ -9,7 +9,6 @@ heroImage: "/images/blog/knowing-how-much-embedded-is-enough-hero.png"
 draft: false
 ---
 
-# How Much Embedded Systems Knowledge Is Enough for the Job?
 
 From my first electronics project back in 2018 during my bachelor’s studies, an obstacle avoidance robot that used an ultrasonic sensor to detect and avoid obstacles, to building larger systems like an autonomous drone, and finally shaping my latest idea of a “digital Embedded CV” after graduation, I’ve realised that “knowing embedded systems” is not one milestone. It is a progression. In interviews, the confusion usually comes from not knowing where your project sits in that progression and what “good” means at that level. The simplest way I’ve found to describe it is a three-stage ladder: Simulation, Prototype, and Implementation (MVP). If you can say which stage your work is in and justify it, you’re no longer guessing your level.
 

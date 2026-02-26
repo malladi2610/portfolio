@@ -6,7 +6,7 @@ updatedDate: 2026-02-24
 topic: "electronics"
 tags: ["Embedded Systems", "Rust", "Control Systems"]
 heroImage: "/images/blog/quadcopter-rust-architecture.png"
-draft: true
+draft: false
 ---
 Last Spring I worked on a group engineering project where we had to design and implement the full control software for a quadcopter using Rust. We were given the drone hardware and a base platform, but everything else, the control logic, state machines, communication protocol, filtering, and tuning, had to be built from scratch.
 
