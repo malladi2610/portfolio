@@ -25,9 +25,15 @@ const topicLabels = {
   robotics: "Robotics"
 };
 const allPosts = await getCollection("blog");
+const getPostTopics = (post) =>
+  Array.isArray(post.data.topics) && post.data.topics.length > 0
+    ? post.data.topics
+    : post.data.topic
+      ? [post.data.topic]
+      : [];
 const posts = allPosts
   .filter((post) => !post.data.draft)
-  .filter((post) => post.data.topic === topic)
+  .filter((post) => getPostTopics(post).includes(topic))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
@@ -50,6 +56,7 @@ const posts = allPosts
             title={post.data.title}
             description={post.data.description}
             topic={post.data.topic}
+            topics={getPostTopics(post)}
             pubDate={post.data.pubDate}
             updatedDate={post.data.updatedDate}
             tags={post.data.tags}

@@ -14,6 +14,12 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 const readingTime = getReadingTime(post.body);
+const postTopics =
+  Array.isArray(post.data.topics) && post.data.topics.length > 0
+    ? post.data.topics
+    : post.data.topic
+      ? [post.data.topic]
+      : [];
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
@@ -24,6 +30,7 @@ const readingTime = getReadingTime(post.body);
       updatedDate={post.data.updatedDate}
       readingTime={readingTime}
       topic={post.data.topic}
+      topics={postTopics}
     />
     {post.data.heroImage && (
       <img src={post.data.heroImage} alt="" loading="lazy" />

@@ -11,7 +11,8 @@
 - `description`: Short summary used in previews and SEO.
 - `pubDate`: Publish date in `YYYY-MM-DD`.
 - `updatedDate`: Optional update date in `YYYY-MM-DD`.
-- `topic`: One of `electronics`, `ai`, `robotics`.
+- `topics`: Preferred. One or more of `electronics`, `ai`, `robotics`.
+- `topic`: Legacy single-topic field (still supported for older posts).
 - `tags`: Optional list of tags.
 - `heroImage`: Optional hero image path.
 - `draft`: Set to `true` to hide the post.

@@ -5,6 +5,12 @@ import { getCollection } from "astro:content";
 import { getReadingTime } from "../../utils/readingTime";
 
 const allPosts = await getCollection("blog");
+const getPostTopics = (post) =>
+  Array.isArray(post.data.topics) && post.data.topics.length > 0
+    ? post.data.topics
+    : post.data.topic
+      ? [post.data.topic]
+      : [];
 const posts = allPosts
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -29,6 +35,7 @@ const posts = allPosts
             title={post.data.title}
             description={post.data.description}
             topic={post.data.topic}
+            topics={getPostTopics(post)}
             pubDate={post.data.pubDate}
             updatedDate={post.data.updatedDate}
             tags={post.data.tags}
