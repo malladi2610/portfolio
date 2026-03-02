@@ -4,15 +4,11 @@ title: "Building an n8n Gmail AI Agent to Automate My Job Search"
 description: "An end-to-end n8n workflow that reads job emails, scrapes descriptions, evaluates fit using OpenAI, and writes only relevant roles into Notion."
 pubDate: 2026-03-02
 updatedDate: 2026-03-02
-topic: "ai"
+topics: ["ai"]
 tags: ["n8n", "OpenAI", "Notion"]
-heroImage: "/images/blog/n8n-gmail-ai-agent.png"
+heroImage: "/images/blog/n8n-gmail-ai-agent-workflow.svg"
 draft: false
 ---
-
-<!-- Make the block diagram of the exisiting systems by taking the repo as example or try to use the json to create the complete n8n pipeline diagram -->
-
-<!-- Link the github repo -->
 
 ### The Setup
 
@@ -34,7 +30,7 @@ Next comes the evaluation layer. I embedded four CV profiles in structured JSON 
 
 Only high-confidence matches move forward into a **Notion database**, where I track company name, platform, job title, decision, score, and follow-up dates.
 
-![Workflow overview](/images/blog/n8n-gmail-ai-agent.png)
+![Workflow overview](/images/blog/n8n-gmail-ai-agent-workflow.svg)
 
 ### The Trenches
 
@@ -61,3 +57,5 @@ This project taught me practical automation with **n8n**, cost-aware usage of th
 The next logical step is moving from cloud-only execution to **local hosting with scheduled triggers**, so the pipeline runs periodically without manual input.
 
 What began as inbox frustration became a structured automation system. More importantly, it shifted my focus from searching for jobs to preparing for them.
+
+Project repository: [Weekendprojects - n8n_gmail_AI_agent](https://github.com/malladi2610/Weekendprojects/tree/main/n8n_gmail_AI_agent)

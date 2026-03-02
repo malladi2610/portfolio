@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="420" viewBox="0 0 1760 420" role="img" aria-labelledby="title desc">
+  <title id="title">n8n Gmail AI Agent Workflow</title>
+  <desc id="desc">Simple block diagram: date trigger, Gmail fetch, platform parsing, Bright Data enrichment, AI scoring, and Notion tracking.</desc>
+  <defs>
+    <filter id="rough" x="-8%" y="-12%" width="116%" height="124%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" seed="8" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.9"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#f3f3f3"/>
+    </marker>
+    <style>
+      .bg { fill: #050414; }
+      .ink { fill: #f3f3f3; stroke: #f3f3f3; }
+      .card { fill: #141414; stroke: #f3f3f3; stroke-width: 3; }
+      .title {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 50px;
+        font-weight: 700;
+        fill: #f3f3f3;
+      }
+      .subtitle {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 22px;
+        fill: #d9d9d9;
+      }
+      .label {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 24px;
+        font-weight: 700;
+        fill: #f3f3f3;
+      }
+      .small {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 18px;
+        fill: #d9d9d9;
+      }
+      .flow {
+        stroke: #f3f3f3;
+        stroke-width: 3;
+        fill: none;
+        marker-end: url(#arrow);
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1760" height="420"/>
+
+  <rect x="60" y="170" width="260" height="98" rx="18" class="card" filter="url(#rough)"/>
+  <text x="190" y="210" text-anchor="middle" class="label">Date Trigger</text>
+  <text x="190" y="238" text-anchor="middle" class="small">Manual or scheduled runDate</text>
+
+  <rect x="380" y="170" width="260" height="98" rx="18" class="card" filter="url(#rough)"/>
+  <text x="510" y="210" text-anchor="middle" class="label">Gmail Fetch</text>
+  <text x="510" y="238" text-anchor="middle" class="small">Unread job-alert emails</text>
+
+  <rect x="700" y="170" width="260" height="98" rx="18" class="card" filter="url(#rough)"/>
+  <text x="830" y="206" text-anchor="middle" class="label">Parse + Route</text>
+  <text x="830" y="234" text-anchor="middle" class="small">LinkedIn | Glassdoor | Indeed</text>
+
+  <rect x="1020" y="170" width="260" height="98" rx="18" class="card" filter="url(#rough)"/>
+  <text x="1150" y="206" text-anchor="middle" class="label">Bright Data</text>
+  <text x="1150" y="234" text-anchor="middle" class="small">Enrich full JD + normalize</text>
+
+  <rect x="1340" y="170" width="180" height="98" rx="18" class="card" filter="url(#rough)"/>
+  <text x="1430" y="204" text-anchor="middle" class="label">OpenAI</text>
+  <text x="1430" y="232" text-anchor="middle" class="small">Fit score + decision</text>
+
+  <rect x="1580" y="170" width="160" height="98" rx="18" class="card" filter="url(#rough)"/>
+  <text x="1660" y="204" text-anchor="middle" class="label">Notion</text>
+  <text x="1660" y="232" text-anchor="middle" class="small">Track KEEP/MAYBE</text>
+
+  <path class="flow" d="M320 220 L380 220"/>
+  <path class="flow" d="M640 220 L700 220"/>
+  <path class="flow" d="M960 220 L1020 220"/>
+  <path class="flow" d="M1280 220 L1340 220"/>
+  <path class="flow" d="M1520 220 L1580 220"/>
+</svg>
