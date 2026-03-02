@@ -9,6 +9,8 @@ tags: ["Edge AI", "IoT", "Embedded Systems"]
 heroImage: "/images/blog/hairems-system-architecture.png"
 draft: false
 ---
+<!-- Simplify the block diagram add that picture -->
+<!-- Upload the report to the github -->
 
 ### The Context
 

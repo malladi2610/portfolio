@@ -8,11 +8,11 @@ tags: ["embedded-systems", "firmware", "mcu", "debugging", "rtos", "career"]
 heroImage: "/images/blog/knowing-how-much-embedded-is-enough-hero.png"
 draft: false
 ---
-
+<!-- Make sure the exisiting block diagram works and clear -->
 
 From my first electronics project back in 2018 during my bachelor’s studies, an obstacle avoidance robot that used an ultrasonic sensor to detect and avoid obstacles, to building larger systems like an autonomous drone, and finally shaping my latest idea of a “digital Embedded CV” after graduation, I’ve realised that “knowing embedded systems” is not one milestone. It is a progression. In interviews, the confusion usually comes from not knowing where your project sits in that progression and what “good” means at that level. The simplest way I’ve found to describe it is a three-stage ladder: Simulation, Prototype, and Implementation (MVP). If you can say which stage your work is in and justify it, you’re no longer guessing your level.
 
-![Embedded System Development Process Diagram](/public/images/blog/knowing_embedded_systems/Embedded_system_stages.png)
+![Embedded System Development Process Diagram](/images/blog/knowing_embedded_systems/Embedded_system_stages.png)
 
 Each stage has a different definition of progress, and each stage comes with a set of tools you should know if you claim you’re strong at that stage.
 

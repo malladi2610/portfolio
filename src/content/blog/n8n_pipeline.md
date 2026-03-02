@@ -10,6 +10,10 @@ heroImage: "/images/blog/n8n-gmail-ai-agent.png"
 draft: false
 ---
 
+<!-- Make the block diagram of the exisiting systems by taking the repo as example or try to use the json to create the complete n8n pipeline diagram -->
+
+<!-- Link the github repo -->
+
 ### The Setup
 
 Every morning, my inbox looked productive. LinkedIn, Indeed, and Glassdoor were sending me 10 to 15 job recommendations each. On paper, that sounds like opportunity. In reality, it was noise.

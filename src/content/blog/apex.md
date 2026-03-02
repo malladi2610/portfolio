@@ -8,7 +8,8 @@ tags: ["IoT", "Hydroponics", "Embedded Systems"]
 heroImage: "/images/blog/apex-hydroponics-system.png"
 draft: false
 ---
-
+<!-- Add the first block diagram picture -->
+<!-- Upload the presentation, paper and report to the github -->
 ### Where It All Began
 
 This was the first serious project I built during my bachelor’s. It started as something simple. Everyone in class chose the standard assignment. My friend and I decided to build something instead.

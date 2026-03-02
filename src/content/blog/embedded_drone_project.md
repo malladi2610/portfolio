@@ -8,6 +8,9 @@ tags: ["Embedded Systems", "Rust", "Control Systems"]
 heroImage: "/images/blog/quadcopter-rust-architecture.png"
 draft: false
 ---
+<!-- Make a simple block diagram using the report and add it here  -->
+<!-- Add videos and report to the github -->
+
 Last Spring I worked on a group engineering project where we had to design and implement the full control software for a quadcopter using Rust. We were given the drone hardware and a base platform, but everything else, the control logic, state machines, communication protocol, filtering, and tuning, had to be built from scratch.
 
 The flight controller ran on an ARM Cortex-M0 without floating-point support. At the same time, the system had to satisfy strict safety requirements. It had to boot in safe mode, support a reliable panic mode, monitor battery voltage, and remain stable even if the UART link to the PC dropped. The drone is inherently unstable, so without feedback control it would flip within seconds.

@@ -8,6 +8,9 @@ tags: ["rust", "emulator", "6502", "nes", "systems-programming", "debugging"]
 heroImage: ""
 draft: false
 ---
+<!-- Add the picture of the block diagram from the report -->
+<!-- Upload the report and link the github -->
+
 When people ask me what "embedded systems engineering" actually looks like, I point them to this project. In late 2023, I worked with a team of four engineers to architect a Nintendo Entertainment System (NES) emulator in Rust. We operated under a strict four-week deadline. The goal wasn't just to make a game run; it was to replicate the architecture of a 1985 console—the CPU, the PPU (graphics), and the mappers—while adhering to strict Rust standards like Enums and Traits.
 
 Looking back, the project didn't just happen all at once. It naturally evolved through three distinct phases: Simulation, Prototype, and a final Implementation where we hit—and solved—our biggest engineering roadblocks.
