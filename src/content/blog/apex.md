@@ -6,6 +6,7 @@ updatedDate: 2026-02-27
 topic: "electronics"
 tags: ["IoT", "Hydroponics", "Embedded Systems"]
 heroImage: "/images/blog/apex-final-system-architecture.svg"
+showHeroOnPost: false
 draft: false
 ---
 This was the first serious project I built during my bachelor’s. It started as something simple. Everyone in class chose the standard assignment. My friend and I decided to build something instead.
@@ -17,7 +18,6 @@ That question became APEX, Artificial Plant Emotion Xpresser. What began as a pl
 Our goal was straightforward. Build an embedded system that could monitor these variables, push the data to the cloud, and reduce manual intervention.
 
 <img src="/images/blog/apex-v1-flowchart.svg" alt="APEX first-version workflow" width="560" height="770" loading="lazy" />
-*Figure: Initial APEX workflow from the early prototype phase.*
 
 ### Designing the System
 
@@ -31,8 +31,10 @@ The field system used:
 
 Sensor data was processed locally and transmitted to the cloud via MQTT. A Flutter-based mobile application displayed real-time readings and allowed monitoring from anywhere.
 
+<div style="text-align: center;">
 <img src="/images/blog/apex-final-system-architecture.svg" alt="APEX final system architecture" width="760" height="456" loading="lazy" />
-*Figure: Final APEX architecture with hydroponics hardware, control layer, and cloud monitoring.*
+</div>
+
 
 We executed the work in phases: plant growth experiments, cloud and app integration, and finally automated monitoring with reduced human intervention.
 
