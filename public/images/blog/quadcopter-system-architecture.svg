@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="820" viewBox="0 0 1900 820" role="img" aria-labelledby="title desc">
+  <title id="title">Quadcopter System Architecture Overview</title>
+  <desc id="desc">High-level architecture showing PC-side threads, shared protocol over UART, and drone-side control modules.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#f3f3f3"/>
+    </marker>
+    <style>
+      .bg { fill: #050414; }
+      .zone { fill: none; stroke: #d8d8d8; stroke-width: 2.5; stroke-dasharray: 10 8; }
+      .card { fill: #141414; stroke: #f3f3f3; stroke-width: 3; }
+      .soft { fill: #0f1020; stroke: #cfcfcf; stroke-width: 2.2; }
+      .title {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 46px;
+        font-weight: 700;
+        fill: #f3f3f3;
+      }
+      .section {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 34px;
+        font-weight: 700;
+        fill: #f3f3f3;
+      }
+      .label {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 30px;
+        font-weight: 700;
+        fill: #f3f3f3;
+      }
+      .small {
+        font-family: "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+        font-size: 20px;
+        fill: #d7d7d7;
+      }
+      .flow {
+        stroke: #f3f3f3;
+        stroke-width: 3;
+        fill: none;
+        marker-end: url(#arrow);
+      }
+      .flow-soft {
+        stroke: #cccccc;
+        stroke-width: 2.2;
+        fill: none;
+        marker-end: url(#arrow);
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1900" height="820"/>
+  <text x="950" y="64" text-anchor="middle" class="title">Quadcopter System Architecture (Overview)</text>
+
+  <rect x="70" y="100" width="1760" height="250" rx="12" class="zone"/>
+  <text x="100" y="146" class="section">PC Side (Software Threads)</text>
+
+  <rect x="150" y="190" width="260" height="100" rx="14" class="card"/>
+  <text x="280" y="252" text-anchor="middle" class="label">Updater</text>
+
+  <rect x="500" y="190" width="260" height="100" rx="14" class="card"/>
+  <text x="630" y="252" text-anchor="middle" class="label">GUI</text>
+
+  <rect x="850" y="190" width="300" height="100" rx="14" class="card"/>
+  <text x="1000" y="252" text-anchor="middle" class="label">Back-end</text>
+
+  <path class="flow" d="M410 240 L500 240"/>
+  <text x="456" y="222" text-anchor="middle" class="small">update()</text>
+
+  <path class="flow-soft" d="M760 220 L850 220"/>
+  <path class="flow-soft" d="M850 260 L760 260"/>
+  <text x="805" y="200" text-anchor="middle" class="small">Data sharing</text>
+
+  <path class="flow" d="M630 122 L630 190"/>
+  <text x="630" y="112" text-anchor="middle" class="small">Keyboard</text>
+
+  <path class="flow" d="M1000 122 L1000 190"/>
+  <text x="1000" y="112" text-anchor="middle" class="small">Joystick</text>
+
+  <rect x="1260" y="190" width="260" height="100" rx="14" class="soft"/>
+  <text x="1390" y="245" text-anchor="middle" class="small">Common Protocol</text>
+  <text x="1390" y="272" text-anchor="middle" class="small">UART + fixed-point types</text>
+  <path class="flow" d="M1150 240 L1260 240"/>
+
+  <rect x="70" y="390" width="1760" height="360" rx="12" class="zone"/>
+  <text x="100" y="436" class="section">Drone Side (Firmware + Control System)</text>
+
+  <rect x="150" y="480" width="370" height="220" rx="12" class="zone"/>
+  <text x="180" y="518" class="small">Sensor Block</text>
+  <rect x="200" y="550" width="130" height="70" rx="10" class="soft"/>
+  <text x="265" y="594" text-anchor="middle" class="small">DMP</text>
+  <rect x="360" y="620" width="130" height="70" rx="10" class="soft"/>
+  <text x="425" y="664" text-anchor="middle" class="small">RAW</text>
+
+  <rect x="620" y="540" width="330" height="120" rx="14" class="card"/>
+  <text x="785" y="604" text-anchor="middle" class="label">Controller</text>
+  <text x="785" y="632" text-anchor="middle" class="small">FSM + mode transitions</text>
+
+  <rect x="230" y="700" width="320" height="70" rx="10" class="soft"/>
+  <text x="390" y="744" text-anchor="middle" class="small">Roll / Pitch / Yaw PID Switches</text>
+
+  <rect x="620" y="700" width="330" height="70" rx="10" class="card"/>
+  <text x="785" y="742" text-anchor="middle" class="small">Actuation Block (ae1..ae4)</text>
+
+  <rect x="1040" y="480" width="700" height="220" rx="12" class="zone"/>
+  <text x="1070" y="518" class="small">Runtime Services</text>
+  <rect x="1080" y="545" width="620" height="46" rx="8" class="soft"/>
+  <text x="1390" y="574" text-anchor="middle" class="small">Control loop scheduler (delta_t update)</text>
+  <rect x="1080" y="603" width="620" height="46" rx="8" class="soft"/>
+  <text x="1390" y="632" text-anchor="middle" class="small">Mode logic: Safe / Panic / Manual / Full / Raw / Height</text>
+  <rect x="1080" y="661" width="620" height="46" rx="8" class="soft"/>
+  <text x="1390" y="690" text-anchor="middle" class="small">Flash logger + safety watchdogs</text>
+
+  <path class="flow" d="M1390 290 L1390 540 L950 540"/>
+  <text x="1430" y="370" class="small">PC Link</text>
+
+  <path class="flow-soft" d="M330 585 L620 585"/>
+  <path class="flow-soft" d="M490 655 L620 655"/>
+  <path class="flow" d="M390 700 L390 670 L620 670 L620 735"/>
+  <path class="flow" d="M785 660 L785 700"/>
+
+  <path class="flow-soft" d="M950 575 L1080 575"/>
+  <path class="flow-soft" d="M950 615 L1080 626"/>
+  <path class="flow-soft" d="M950 735 L1080 684"/>
+</svg>

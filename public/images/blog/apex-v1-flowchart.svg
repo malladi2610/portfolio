@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1650" viewBox="0 0 1200 1650" role="img" aria-labelledby="title desc">
+  <title id="title">APEX First Version Workflow</title>
+  <desc id="desc">Initial APEX workflow from sensing soil moisture to controller decision and watering action.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 z" fill="#dfe9ff"/>
+    </marker>
+    <style>
+      .bg { fill: #050414; }
+      .flow { stroke: #dfe9ff; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .box { fill: #121a31; stroke: #80a8ea; stroke-width: 3; }
+      .box-alt { fill: #1a142a; stroke: #b990de; stroke-width: 3; }
+      .box-warm { fill: #2a2014; stroke: #d2a56d; stroke-width: 3; }
+      .label {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 44px;
+        font-weight: 700;
+        fill: #eff5ff;
+      }
+      .body {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 34px;
+        fill: #d6e3fb;
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="1650"/>
+
+  <rect x="430" y="80" width="340" height="110" rx="14" class="box"/>
+  <text x="600" y="150" text-anchor="middle" class="label">Start</text>
+
+  <rect x="360" y="300" width="480" height="120" rx="14" class="box-alt"/>
+  <text x="600" y="375" text-anchor="middle" class="label">APEX</text>
+
+  <rect x="220" y="530" width="760" height="300" rx="16" class="box"/>
+  <text x="600" y="640" text-anchor="middle" class="body">Sense soil moisture content</text>
+  <text x="600" y="690" text-anchor="middle" class="body">and store readings in</text>
+  <text x="600" y="740" text-anchor="middle" class="body">cloud server</text>
+
+  <rect x="330" y="940" width="540" height="120" rx="14" class="box-alt"/>
+  <text x="600" y="1015" text-anchor="middle" class="label">Main Controller</text>
+
+  <rect x="180" y="1170" width="840" height="320" rx="16" class="box-warm"/>
+  <text x="600" y="1270" text-anchor="middle" class="body">Analyze server data against</text>
+  <text x="600" y="1320" text-anchor="middle" class="body">predefined limits and trigger</text>
+  <text x="600" y="1370" text-anchor="middle" class="body">watering action for each plant</text>
+
+  <rect x="430" y="1540" width="340" height="90" rx="14" class="box"/>
+  <text x="600" y="1598" text-anchor="middle" class="label">Stop</text>
+
+  <path class="flow" d="M600 190 L600 300"/>
+  <path class="flow" d="M600 420 L600 530"/>
+  <path class="flow" d="M600 830 L600 940"/>
+  <path class="flow" d="M600 1060 L600 1170"/>
+  <path class="flow" d="M600 1490 L600 1540"/>
+</svg>

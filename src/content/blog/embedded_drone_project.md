@@ -46,3 +46,7 @@ Height control brought a different challenge. The barometer updated slowly and f
 During the final flight test, the drone took off, stabilized, and maintained its attitude in full control mode. Raw mode ran at 200 Hz with a consistent 4-millisecond loop time. Panic mode safely slowed the motors down. The state machine worked exactly as planned.
 
 Watching it fly was rewarding, but the bigger lesson was about architecture. In embedded systems, safety and clear control logic matter more than clever algorithms. More importantly, it showed how careful state design and defensive programming (Because of Rust!!!) are essential when software directly controls hardware.
+
+## Project Links
+
+- GitHub repository: `https://github.com/malladi2610/Autonomous-drone.git`

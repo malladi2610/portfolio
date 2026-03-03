@@ -6,11 +6,9 @@ pubDate: 2026-02-28
 updatedDate: 2026-02-28
 topics: ["electronics", "ai"]
 tags: ["Edge AI", "IoT", "Embedded Systems"]
-heroImage: "/images/blog/hairems-system-architecture.png"
+heroImage: "/images/blog/hairems-system-architecture-pro.svg"
 draft: false
 ---
-<!-- Simplify the block diagram add that picture -->
-<!-- Upload the report to the github -->
 
 ### The Context
 
@@ -28,7 +26,7 @@ For saline monitoring, an **IR sensor** tracked the liquid level. Oxygen level w
 
 Emergency sound detection was handled differently. Using an **Arduino Nano 33 BLE Sense**, we collected audio samples from ICU-like machine sounds. A model was trained on **Edge Impulse** to classify sounds into low-risk, mid-risk, and high-risk categories. Inference ran directly on the device, enabling real-time classification without constant cloud processing.
 
-![HAIREMS System Architecture](/images/blog/hairems-system-architecture.png)
+![HAIREMS System Architecture](/images/blog/hairems-system-architecture-pro.svg)
 
 ### The Integration Challenges
 
@@ -47,3 +45,7 @@ HAIREMS became one of the most integrated systems I had built at that stage. Mul
 The key lesson was that embedded systems design goes beyond firmware. It involves defining safe thresholds, handling unreliable networks, validating sensor assumptions, and designing for constraints you cannot fully control.
 
 Even today, the core problem remains relevant. Healthcare monitoring still requires automation support. This project strengthened my understanding of how hardware, AI, and cloud services intersect in practical, constraint-driven systems.
+
+### Project Links
+
+- GitHub repository: `https://github.com/malladi2610/hairems.git`

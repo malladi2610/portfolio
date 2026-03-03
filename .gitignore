@@ -4,6 +4,7 @@ dist/
 .env
 .env.*
 .DS_Store
+image_creation_codex_rules.md
 
 # Local secrets for the DCD pipeline (do not commit)
 scripts/dcd_pipeline/state/secrets.json

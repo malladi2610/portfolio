@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1320" viewBox="0 0 2200 1320" role="img" aria-labelledby="title desc">
+  <title id="title">APEX Final System Architecture</title>
+  <desc id="desc">APEX hydroponics architecture with field hardware, central sensing, Arduino control, cloud sync, and mobile monitoring.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 z" fill="#dfe9ff"/>
+    </marker>
+    <marker id="arrow-warm" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+      <path d="M0,0 L12,5 L0,10 z" fill="#d2a56d"/>
+    </marker>
+    <style>
+      .bg { fill: #050414; }
+      .zone { fill: none; stroke: #4568a5; stroke-width: 2.4; stroke-dasharray: 10 8; }
+      .card { fill: #121a31; stroke: #80a8ea; stroke-width: 2.6; }
+      .card-mid { fill: #102135; stroke: #69b9d9; stroke-width: 2.6; }
+      .card-warm { fill: #2a2014; stroke: #d2a56d; stroke-width: 2.6; }
+      .card-alert { fill: #2a1322; stroke: #e486ab; stroke-width: 2.6; }
+      .card-app { fill: #13261f; stroke: #78bf95; stroke-width: 2.8; }
+      .section {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        fill: #deebff;
+      }
+      .label {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 27px;
+        font-weight: 700;
+        fill: #eef5ff;
+      }
+      .small {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 22px;
+        fill: #d2e2ff;
+      }
+      .tiny {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 19px;
+        fill: #bdd3f5;
+      }
+      .flow {
+        stroke: #dfe9ff;
+        stroke-width: 3.2;
+        fill: none;
+        marker-end: url(#arrow);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .flow-dashed {
+        stroke: #d2a56d;
+        stroke-width: 3.2;
+        fill: none;
+        marker-end: url(#arrow-warm);
+        stroke-dasharray: 12 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="2200" height="1320"/>
+
+  <rect x="60" y="70" width="2080" height="460" rx="14" class="zone"/>
+  <text x="100" y="120" class="section">Hydroponics Field Hardware</text>
+
+  <rect x="230" y="170" width="760" height="130" rx="14" class="card-app"/>
+  <text x="610" y="238" text-anchor="middle" class="label">Plant in hydroponics systems (NFT)</text>
+  <text x="610" y="274" text-anchor="middle" class="small">Root-zone monitoring across plant slots</text>
+
+  <text x="1100" y="250" text-anchor="middle" class="section">+</text>
+
+  <rect x="1210" y="170" width="760" height="130" rx="14" class="card-warm"/>
+  <text x="1590" y="238" text-anchor="middle" class="label">Nutrient tank + Pump</text>
+
+  <!-- Centered sensor cluster -->
+  <rect x="700" y="355" width="220" height="88" rx="12" class="card-mid"/>
+  <text x="810" y="408" text-anchor="middle" class="small">Moisture sensor</text>
+
+  <rect x="960" y="355" width="220" height="88" rx="12" class="card-mid"/>
+  <text x="1070" y="408" text-anchor="middle" class="small">Temperature</text>
+
+  <rect x="1220" y="355" width="220" height="88" rx="12" class="card-mid"/>
+  <text x="1330" y="408" text-anchor="middle" class="small">pH probe</text>
+
+  <rect x="1480" y="355" width="220" height="88" rx="12" class="card-mid"/>
+  <text x="1590" y="408" text-anchor="middle" class="small">Ultrasonic sensor</text>
+
+  <rect x="60" y="560" width="1480" height="690" rx="14" class="zone"/>
+  <text x="100" y="610" class="section">Control and Edge Processing</text>
+
+  <rect x="620" y="740" width="380" height="170" rx="14" class="card"/>
+  <text x="810" y="820" text-anchor="middle" class="label">Arduino Mega 2560</text>
+  <text x="810" y="856" text-anchor="middle" class="small">Sensor fusion + threshold logic</text>
+
+  <rect x="700" y="980" width="220" height="130" rx="12" class="card-mid"/>
+  <text x="810" y="1046" text-anchor="middle" class="label">NodeMCU</text>
+  <text x="810" y="1080" text-anchor="middle" class="tiny">MQTT publish client</text>
+
+  <rect x="1140" y="790" width="280" height="130" rx="12" class="card-warm"/>
+  <text x="1280" y="852" text-anchor="middle" class="label">Pump control</text>
+
+  <rect x="1580" y="560" width="560" height="690" rx="14" class="zone"/>
+  <text x="1620" y="610" class="section">Cloud and Monitoring Layer</text>
+
+  <rect x="1730" y="880" width="280" height="130" rx="14" class="card"/>
+  <text x="1870" y="946" text-anchor="middle" class="label">Cloud</text>
+  <text x="1870" y="980" text-anchor="middle" class="tiny">MQTT / Adafruit IO dashboard</text>
+
+  <rect x="1710" y="1080" width="320" height="130" rx="14" class="card-app"/>
+  <text x="1870" y="1146" text-anchor="middle" class="label">Mobile App</text>
+  <text x="1870" y="1180" text-anchor="middle" class="tiny">Live readings + remote monitoring</text>
+
+  <!-- Sensor -> Arduino (non-overlapping routing) -->
+  <path class="flow" d="M810 443 L730 740"/>
+  <path class="flow" d="M1070 443 L810 740"/>
+  <path class="flow" d="M1330 443 L890 740"/>
+  <path class="flow" d="M1590 443 L970 740"/>
+
+  <!-- Control path -->
+  <path class="flow" d="M1000 840 L1140 840"/>
+  <text x="1070" y="826" text-anchor="middle" class="tiny">pump actuation</text>
+  <path class="flow-dashed" d="M1280 790 L1280 520 L1860 520 L1860 300"/>
+
+  <path class="flow" d="M810 910 L810 980"/>
+  <text x="840" y="958" class="tiny">serial/SPI</text>
+
+  <!-- Z-shaped Cloud -> NodeMCU path -->
+  <path class="flow" d="M920 1060 L1540 1060 L1540 945 L1730 945"/>
+
+  <path class="flow" d="M1870 1010 L1870 1080"/>
+</svg>

@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1220" viewBox="0 0 2200 1220" role="img" aria-labelledby="title desc">
+  <title id="title">HAIREMS System Flow</title>
+  <desc id="desc">Professionalized HAIREMS flow with oxygen, saline, and emergency sound monitoring subsystems feeding cloud/mobile alerts.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#dfe9ff"/>
+    </marker>
+    <style>
+      .bg { fill: #050414; }
+      .panel { fill: none; stroke: #335790; stroke-width: 2; stroke-dasharray: 8 6; }
+      .box { fill: #111a32; stroke: #81a9eb; stroke-width: 2.2; }
+      .box-warm { fill: #2a2014; stroke: #d2a56d; stroke-width: 2.2; }
+      .box-alert { fill: #2a1322; stroke: #e486ab; stroke-width: 2.2; }
+      .box-app { fill: #13261f; stroke: #78bf95; stroke-width: 2.4; }
+      .section {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        fill: #d9e7ff;
+      }
+      .label {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        fill: #edf5ff;
+      }
+      .small {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 24px;
+        fill: #d1ddf6;
+      }
+      .tiny {
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: 18px;
+        fill: #c4d3ef;
+      }
+      .tag {
+        fill: #050414;
+        opacity: 0.9;
+        rx: 6;
+      }
+      .flow {
+        stroke: #dfe9ff;
+        stroke-width: 3;
+        fill: none;
+        marker-end: url(#arrow);
+      }
+    </style>
+  </defs>
+
+  <rect class="bg" width="2200" height="1220"/>
+
+  <!-- Subsystem panels -->
+  <rect x="70" y="70" width="650" height="760" rx="12" class="panel"/>
+  <rect x="775" y="70" width="650" height="760" rx="12" class="panel"/>
+  <rect x="1480" y="70" width="650" height="760" rx="12" class="panel"/>
+
+  <text x="395" y="120" text-anchor="middle" class="section">Oxygen Level Monitor</text>
+  <text x="1100" y="120" text-anchor="middle" class="section">Saline Level Detector</text>
+  <text x="1805" y="120" text-anchor="middle" class="section">Emergency/Panic Sound Detector</text>
+
+  <!-- Left column -->
+  <rect x="265" y="180" width="260" height="95" rx="12" class="box"/>
+  <text x="395" y="238" text-anchor="middle" class="label">NodeMCU</text>
+
+  <rect x="460" y="360" width="230" height="90" rx="12" class="box-warm"/>
+  <text x="575" y="416" text-anchor="middle" class="small">Pressure sensor</text>
+
+  <rect x="110" y="325" width="310" height="175" rx="12" class="box"/>
+  <text x="265" y="386" text-anchor="middle" class="small">Send current pressure</text>
+  <text x="265" y="416" text-anchor="middle" class="small">to Blynk cloud</text>
+
+  <rect x="120" y="570" width="290" height="125" rx="12" class="box-alert"/>
+  <text x="265" y="626" text-anchor="middle" class="small">Send a mail to</text>
+  <text x="265" y="656" text-anchor="middle" class="small">concerned authority</text>
+
+  <path class="flow" d="M460 405 L505 275"/>
+  <path class="flow" d="M325 275 L235 325"/>
+  <path class="flow" d="M265 500 L265 570"/>
+  <rect x="135" y="525" width="260" height="28" class="tag"/>
+  <text x="145" y="544" class="tiny">if pressure is below threshold</text>
+
+  <!-- Middle column -->
+  <rect x="970" y="180" width="260" height="95" rx="12" class="box"/>
+  <text x="1100" y="238" text-anchor="middle" class="label">NodeMCU</text>
+
+  <rect x="1280" y="260" width="190" height="80" rx="12" class="box-warm"/>
+  <text x="1375" y="309" text-anchor="middle" class="small">IR sensor</text>
+
+  <rect x="835" y="410" width="290" height="130" rx="12" class="box"/>
+  <text x="980" y="468" text-anchor="middle" class="small">Send saline level</text>
+  <text x="980" y="498" text-anchor="middle" class="small">data to cloud</text>
+
+  <rect x="1150" y="410" width="290" height="130" rx="12" class="box-warm"/>
+  <text x="1295" y="468" text-anchor="middle" class="small">Turn on servo to</text>
+  <text x="1295" y="498" text-anchor="middle" class="small">reduce flow</text>
+
+  <path class="flow" d="M1280 300 L1210 275"/>
+  <path class="flow" d="M1035 275 L970 410"/>
+  <path class="flow" d="M1170 275 L1260 410"/>
+
+  <!-- Right column -->
+  <rect x="1610" y="160" width="390" height="110" rx="12" class="box"/>
+  <text x="1805" y="214" text-anchor="middle" class="small">Arduino Nano 33 BLE Sense</text>
+  <text x="1805" y="242" text-anchor="middle" class="tiny">sound classification</text>
+
+  <rect x="1670" y="330" width="270" height="95" rx="12" class="box"/>
+  <text x="1805" y="389" text-anchor="middle" class="label">NodeMCU</text>
+
+  <rect x="1610" y="490" width="390" height="130" rx="12" class="box"/>
+  <text x="1805" y="548" text-anchor="middle" class="small">Send recognised class</text>
+  <text x="1805" y="578" text-anchor="middle" class="small">data to Blynk cloud</text>
+
+  <rect x="1805" y="690" width="260" height="110" rx="12" class="box-alert"/>
+  <text x="1935" y="753" text-anchor="middle" class="small">Make a phone call</text>
+
+  <path class="flow" d="M1805 270 L1805 330"/>
+  <path class="flow" d="M1805 425 L1805 490"/>
+  <path class="flow" d="M1900 620 L1935 690"/>
+  <rect x="1835" y="650" width="210" height="28" class="tag"/>
+  <text x="1845" y="669" class="tiny">in case of emergency</text>
+
+  <!-- Shared mobile app sink -->
+  <rect x="820" y="910" width="560" height="170" rx="14" class="box-app"/>
+  <text x="1100" y="1007" text-anchor="middle" class="label">Mobile Application</text>
+
+  <path class="flow" d="M325 500 L980 910"/>
+  <path class="flow" d="M980 540 L1100 910"/>
+  <path class="flow" d="M1610 620 L1220 910"/>
+</svg>

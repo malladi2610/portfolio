@@ -5,11 +5,9 @@ pubDate: 2026-02-27
 updatedDate: 2026-02-27
 topic: "electronics"
 tags: ["IoT", "Hydroponics", "Embedded Systems"]
-heroImage: "/images/blog/apex-hydroponics-system.png"
+heroImage: "/images/blog/apex-final-system-architecture.svg"
 draft: false
 ---
-<!-- Add the first block diagram picture -->
-<!-- Upload the presentation, paper and report to the github -->
 ### Where It All Began
 
 This was the first serious project I built during my bachelor’s. It started as something simple. Everyone in class chose the standard assignment. My friend and I decided to build something instead.
@@ -19,6 +17,9 @@ We were fascinated by one idea: what if plants could “express” how they felt
 That question became APEX, Artificial Plant Emotion Xpresser. What began as a playful concept slowly turned into a structured attempt to solve a real problem. Water scarcity, irregular weather, and inefficient irrigation practices make conventional farming difficult. Hydroponics offers control, but only if parameters like **pH, temperature, moisture, and nutrient levels** are monitored continuously.
 
 Our goal was straightforward. Build an embedded system that could monitor these variables, push the data to the cloud, and reduce manual intervention.
+
+![APEX first-version workflow](/images/blog/apex-v1-flowchart.svg)
+*Figure: Initial APEX workflow from the early prototype phase.*
 
 ### Designing the System
 
@@ -32,7 +33,8 @@ The field system used:
 
 Sensor data was processed locally and transmitted to the cloud via MQTT. A Flutter-based mobile application displayed real-time readings and allowed monitoring from anywhere.
 
-![APEX Hydroponics System Architecture](/images/blog/apex-hydroponics-system.png)
+![APEX final system architecture](/images/blog/apex-final-system-architecture.svg)
+*Figure: Final APEX architecture with hydroponics hardware, control layer, and cloud monitoring.*
 
 We executed the work in phases: plant growth experiments, cloud and app integration, and finally automated monitoring with reduced human intervention.
 
@@ -57,3 +59,8 @@ What started as a replacement for an assignment became the first prize-winning p
 More importantly, it taught me how to structure a problem statement, conduct a literature review, prototype using off-the-shelf components, integrate multiple sensors, and build a full embedded IoT pipeline that actually worked.
 
 It was the first time I built something end-to-end with friends, solved real constraints, and saw a system operate reliably outside a lab environment.
+
+### Project Links
+
+- GitHub repository: `https://github.com/malladi2610/APEX.git`
+

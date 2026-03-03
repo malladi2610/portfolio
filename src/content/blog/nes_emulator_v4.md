@@ -8,8 +8,6 @@ tags: ["rust", "emulator", "6502", "nes", "systems-programming", "debugging"]
 heroImage: ""
 draft: false
 ---
-<!-- Add the picture of the block diagram from the report -->
-<!-- Upload the report and link the github -->
 
 When people ask me what "embedded systems engineering" actually looks like, I point them to this project. In late 2023, I worked with a team of four engineers to architect a Nintendo Entertainment System (NES) emulator in Rust. We operated under a strict four-week deadline. The goal wasn't just to make a game run; it was to replicate the architecture of a 1985 console—the CPU, the PPU (graphics), and the mappers—while adhering to strict Rust standards like Enums and Traits.
 
@@ -38,6 +36,9 @@ This is where the project shifted from a standard implementation to a real engin
 
 The hurdle was the **MMC1 Mapper**. Unlike NROM, MMC1 allows games to swap memory banks (Bank Switching) because games like *The Legend of Zelda* are larger than the NES's limited address space. We implemented the bank switching logic, but when we loaded *The Legend of Zelda*, the emulator panicked and crashed.
 
+![NES memory mapper architecture (themed)](/images/blog/nes_emulator/project_architecture/project_architecture_theme.png)
+*Figure: NES mapper architecture from the report, recolored to match the website palette.*
+
 This is the kind of bug that defines an engineer. The easy path is to say, "Zelda is broken, let's just play Mario." The engineering path is to find the root cause.
 
 We dug into the source code and found the issue wasn't in our CPU. It was in the PPU library we were using. *The Legend of Zelda* requires writing to CHR-RAM (Character RAM) to update graphics dynamically, but the library didn't support that feature.
@@ -56,9 +57,6 @@ We claimed this as an MVP, but we knew it wasn't a "Product." The most glaring o
 
 If we were to do this again, we would have spent less time diving headfirst into coding and more time planning the Git strategy and architecture upfront. But that, too, is part of the engineering learning curve.
 
-The Report and the Github can be found here: 
+### Project Links
+- GitHub repository: `https://github.com/malladi2610/Rust-basics-with-project.git`
 
-You can view the full architecture of our memory mapping below:
-
-![MMC1 Mapper Architecture](/public/images/blog/nes_emulator/project_architecture/project_architecture.png)
-*Figure: The complex memory mapping required for the MMC1 implementation.*
