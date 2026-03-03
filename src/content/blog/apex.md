@@ -17,7 +17,7 @@ That question became APEX, Artificial Plant Emotion Xpresser. What began as a pl
 
 Our goal was straightforward. Build an embedded system that could monitor these variables, push the data to the cloud, and reduce manual intervention.
 
-<img src="/images/blog/apex-v1-flowchart.svg" alt="APEX first-version workflow" width="360" height="570" loading="lazy" />
+<img src="/images/blog/apex-v1-flowchart.svg" alt="APEX first-version workflow" width="360" height="570" loading="lazy" style="margin: 20px auto;" />
 
 ### Designing the System
 
@@ -31,9 +31,7 @@ The field system used:
 
 Sensor data was processed locally and transmitted to the cloud via MQTT. A Flutter-based mobile application displayed real-time readings and allowed monitoring from anywhere.
 
-<div style="text-align: center;">
-<img src="/images/blog/apex-final-system-architecture.svg" alt="APEX final system architecture" width="760" height="456" loading="lazy" />
-</div>
+<img src="/images/blog/apex-final-system-architecture.svg" alt="APEX final system architecture" width="760" height="456" loading="lazy" style="margin: 20px auto;" />
 
 
 We executed the work in phases: plant growth experiments, cloud and app integration, and finally automated monitoring with reduced human intervention.
