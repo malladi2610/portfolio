@@ -17,7 +17,7 @@ That question became APEX, Artificial Plant Emotion Xpresser. What began as a pl
 
 Our goal was straightforward. Build an embedded system that could monitor these variables, push the data to the cloud, and reduce manual intervention.
 
-<img src="/images/blog/apex-v1-flowchart.svg" alt="APEX first-version workflow" width="560" height="770" loading="lazy" />
+<img src="/images/blog/apex-v1-flowchart.svg" alt="APEX first-version workflow" width="360" height="570" loading="lazy" />
 
 ### Designing the System
 
