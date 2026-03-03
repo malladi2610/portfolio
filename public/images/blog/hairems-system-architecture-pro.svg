@@ -74,30 +74,30 @@
   <text x="265" y="626" text-anchor="middle" class="small">Send a mail to</text>
   <text x="265" y="656" text-anchor="middle" class="small">concerned authority</text>
 
-  <path class="flow" d="M460 405 L505 275"/>
+  <path class="flow" d="M575 360 L505 275"/>
   <path class="flow" d="M325 275 L235 325"/>
   <path class="flow" d="M265 500 L265 570"/>
   <rect x="135" y="525" width="260" height="28" class="tag"/>
   <text x="145" y="544" class="tiny">if pressure is below threshold</text>
 
   <!-- Middle column -->
-  <rect x="970" y="180" width="260" height="95" rx="12" class="box"/>
-  <text x="1100" y="238" text-anchor="middle" class="label">NodeMCU</text>
+  <rect x="930" y="180" width="250" height="95" rx="12" class="box"/>
+  <text x="1055" y="238" text-anchor="middle" class="label">NodeMCU</text>
 
-  <rect x="1280" y="260" width="190" height="80" rx="12" class="box-warm"/>
-  <text x="1375" y="309" text-anchor="middle" class="small">IR sensor</text>
+  <rect x="1145" y="600" width="190" height="80" rx="12" class="box-warm"/>
+  <text x="1240" y="649" text-anchor="middle" class="small">IR sensor</text>
 
-  <rect x="835" y="410" width="290" height="130" rx="12" class="box"/>
-  <text x="980" y="468" text-anchor="middle" class="small">Send saline level</text>
-  <text x="980" y="498" text-anchor="middle" class="small">data to cloud</text>
+  <rect x="820" y="410" width="250" height="130" rx="12" class="box"/>
+  <text x="945" y="468" text-anchor="middle" class="small">Send saline level</text>
+  <text x="945" y="498" text-anchor="middle" class="small">data to cloud</text>
 
-  <rect x="1150" y="410" width="290" height="130" rx="12" class="box-warm"/>
-  <text x="1295" y="468" text-anchor="middle" class="small">Turn on servo to</text>
-  <text x="1295" y="498" text-anchor="middle" class="small">reduce flow</text>
+  <rect x="1090" y="410" width="250" height="130" rx="12" class="box-warm"/>
+  <text x="1215" y="468" text-anchor="middle" class="small">Turn on servo to</text>
+  <text x="1215" y="498" text-anchor="middle" class="small">reduce flow</text>
 
-  <path class="flow" d="M1280 300 L1210 275"/>
-  <path class="flow" d="M1035 275 L970 410"/>
-  <path class="flow" d="M1170 275 L1260 410"/>
+  <path class="flow" d="M1335 640 L1400 640 L1400 228 L1180 228"/>
+  <path class="flow" d="M1005 275 L940 410"/>
+  <path class="flow" d="M1105 275 L1190 410"/>
 
   <!-- Right column -->
   <rect x="1610" y="160" width="390" height="110" rx="12" class="box"/>
@@ -125,6 +125,6 @@
   <text x="1100" y="1007" text-anchor="middle" class="label">Mobile Application</text>
 
   <path class="flow" d="M325 500 L980 910"/>
-  <path class="flow" d="M980 540 L1100 910"/>
+  <path class="flow" d="M945 540 L1100 910"/>
   <path class="flow" d="M1610 620 L1220 910"/>
 </svg>
