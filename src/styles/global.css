@@ -337,9 +337,14 @@ main {
   border: 1px solid var(--line);
 }
 
-.post img.post-image-fit {
-  width: min(100%, 700px);
-  margin: 20px auto;
+.post a {
+  color: #8db2ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post a:hover {
+  color: #b7cdff;
 }
 
 .page-intro {
