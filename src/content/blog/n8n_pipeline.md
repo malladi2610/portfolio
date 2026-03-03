@@ -7,10 +7,9 @@ updatedDate: 2026-03-02
 topics: ["ai"]
 tags: ["n8n", "OpenAI", "Notion"]
 heroImage: "/images/blog/n8n-gmail-ai-agent-workflow.svg"
+showHeroOnPost: false
 draft: false
 ---
-
-### The Setup
 
 Every morning, my inbox looked productive. LinkedIn, Indeed, and Glassdoor were sending me 10 to 15 job recommendations each. On paper, that sounds like opportunity. In reality, it was noise.
 

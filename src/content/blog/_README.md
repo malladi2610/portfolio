@@ -15,4 +15,5 @@
 - `topic`: Legacy single-topic field (still supported for older posts).
 - `tags`: Optional list of tags.
 - `heroImage`: Optional hero image path.
+- `showHeroOnPost`: Optional. Set to `false` to hide the top hero image on the blog page while keeping it in previews.
 - `draft`: Set to `true` to hide the post.

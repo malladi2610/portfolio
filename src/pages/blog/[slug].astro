@@ -20,6 +20,7 @@ const postTopics =
     : post.data.topic
       ? [post.data.topic]
       : [];
+const showHeroOnPost = post.data.showHeroOnPost ?? true;
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
@@ -32,7 +33,7 @@ const postTopics =
       topic={post.data.topic}
       topics={postTopics}
     />
-    {post.data.heroImage && (
+    {showHeroOnPost && post.data.heroImage && (
       <img src={post.data.heroImage} alt="" loading="lazy" />
     )}
     <Content />

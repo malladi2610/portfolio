@@ -49,4 +49,4 @@ Watching it fly was rewarding, but the bigger lesson was about architecture. In 
 
 ## Project Links
 
-- GitHub repository: `https://github.com/malladi2610/Autonomous-drone.git`
+- GitHub repository: [malladi2610/Autonomous-drone](https://github.com/malladi2610/Autonomous-drone)

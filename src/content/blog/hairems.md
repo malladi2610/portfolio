@@ -7,10 +7,9 @@ updatedDate: 2026-02-28
 topics: ["electronics", "ai"]
 tags: ["Edge AI", "IoT", "Embedded Systems"]
 heroImage: "/images/blog/hairems-system-architecture-pro.svg"
+showHeroOnPost: false
 draft: false
 ---
-
-### The Context
 
 During the second wave of COVID, news about oxygen shortages and overwhelmed ICUs was everywhere. In many hospitals, nurses had to manually monitor saline bottles, oxygen cylinders, and machine alarms while managing multiple patients. The workload was high, and delays in response could become serious.
 
@@ -48,4 +47,4 @@ Even today, the core problem remains relevant. Healthcare monitoring still requi
 
 ### Project Links
 
-- GitHub repository: `https://github.com/malladi2610/hairems.git`
+- GitHub repository: [malladi2610/hairems](https://github.com/malladi2610/hairems)

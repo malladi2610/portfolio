@@ -58,5 +58,4 @@ We claimed this as an MVP, but we knew it wasn't a "Product." The most glaring o
 If we were to do this again, we would have spent less time diving headfirst into coding and more time planning the Git strategy and architecture upfront. But that, too, is part of the engineering learning curve.
 
 ### Project Links
-- GitHub repository: `https://github.com/malladi2610/Rust-basics-with-project.git`
-
+- GitHub repository: [malladi2610/Rust-basics-with-project](https://github.com/malladi2610/Rust-basics-with-project)

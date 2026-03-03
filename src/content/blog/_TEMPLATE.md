@@ -6,6 +6,7 @@ updatedDate:
 topics: [electronics]
 tags: ["tag-one", "tag-two"]
 heroImage: "/images/blog/your-hero-image.png"
+showHeroOnPost: true
 draft: true
 ---
 

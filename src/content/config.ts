@@ -14,6 +14,7 @@ const blog = defineCollection({
       topics: z.array(topicEnum).min(1).optional(),
       tags: z.array(z.string()).optional(),
       heroImage: z.string().optional(),
+      showHeroOnPost: z.boolean().optional(),
       draft: z.boolean().optional()
     })
     .refine((data) => Boolean(data.topic) || Boolean(data.topics?.length), {

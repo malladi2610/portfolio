@@ -8,8 +8,6 @@ tags: ["IoT", "Hydroponics", "Embedded Systems"]
 heroImage: "/images/blog/apex-final-system-architecture.svg"
 draft: false
 ---
-### Where It All Began
-
 This was the first serious project I built during my bachelor’s. It started as something simple. Everyone in class chose the standard assignment. My friend and I decided to build something instead.
 
 We were fascinated by one idea: what if plants could “express” how they felt?
@@ -33,7 +31,12 @@ The field system used:
 
 Sensor data was processed locally and transmitted to the cloud via MQTT. A Flutter-based mobile application displayed real-time readings and allowed monitoring from anywhere.
 
-![APEX final system architecture](/images/blog/apex-final-system-architecture.svg)
+<img
+  src="/images/blog/apex-final-system-architecture.svg"
+  alt="APEX final system architecture"
+  class="post-image-fit"
+  loading="lazy"
+/>
 *Figure: Final APEX architecture with hydroponics hardware, control layer, and cloud monitoring.*
 
 We executed the work in phases: plant growth experiments, cloud and app integration, and finally automated monitoring with reduced human intervention.
@@ -62,5 +65,4 @@ It was the first time I built something end-to-end with friends, solved real con
 
 ### Project Links
 
-- GitHub repository: `https://github.com/malladi2610/APEX.git`
-
+- GitHub repository: [malladi2610/APEX](https://github.com/malladi2610/APEX)
