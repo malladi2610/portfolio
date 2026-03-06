@@ -1,15 +1,33 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
 
 const topics = [
-  { slug: "electronics", label: "Electronics" },
-  { slug: "ai", label: "AI" },
-  { slug: "robotics", label: "Robotics" }
+  { slug: "electronics", label: "Electronics", iconSrc: "/microchip.png" },
+  { slug: "ai", label: "AI", iconSrc: "/AI_icon_new.png", iconClass: "topic-card__icon--ai" },
+  { slug: "robotics", label: "Robotics", iconSrc: "/robot.png" }
 ];
+
+const ctas = [
+  { href: "/Subhash_CV.pdf", label: "Download CV", icon: "download", download: true },
+  { href: "/contact/", label: "Contact Page", icon: "contact", download: false, secondary: true }
+];
+
+const ctaIcons = {
+  download: [
+    "M12 4.25v9.5",
+    "M8 10.75 12 14.75 16 10.75",
+    "M5 18.25v.5c0 .97.78 1.75 1.75 1.75h10.5c.97 0 1.75-.78 1.75-1.75v-.5"
+  ],
+  contact: [
+    "M4.5 6.75h15a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 15.75v-7.5a1.5 1.5 0 0 1 1.5-1.5Z",
+    "M4.5 8.25 12 13.5l7.5-5.25"
+  ]
+};
 ---
 
 <BaseLayout title="Home" description="Portfolio and blog on Electronics, AI, and Robotics.">
-  <div class="home-shell">
+  <div class="home-shell" data-home-shell>
     <div class="bubble-layer" aria-hidden="true">
       <div class="bubble corner"></div>
       <div class="bubble small"></div>
@@ -21,57 +39,113 @@ const topics = [
 
     <section class="hero">
       <div class="container hero-inner">
-        <h1 class="hero-title">Electronics | AI | Robotics</h1>
+        <div class="hero-copy">
+          <h1 class="hero-title" aria-label={siteConfig.heroIntro}>
+            <span class="hero-title__text" data-typewriter data-text={siteConfig.heroIntro} aria-hidden="true"></span>
+            <span class="typewriter-cursor" aria-hidden="true"></span>
+            <noscript>{siteConfig.heroIntro}</noscript>
+          </h1>
+        </div>
 
         <div class="topic-row" role="navigation" aria-label="Topic navigation">
-          <a class="topic-card" href={`/topics/${topics[0].slug}/`}>
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <rect x="10" y="10" width="44" height="44" rx="6" fill="#7bd0ff" />
-              <rect x="18" y="18" width="28" height="28" rx="4" fill="#f4f8ff" />
-              <rect x="6" y="26" width="8" height="12" fill="#7bd0ff" />
-              <rect x="50" y="26" width="8" height="12" fill="#7bd0ff" />
-              <rect x="26" y="6" width="12" height="8" fill="#7bd0ff" />
-              <rect x="26" y="50" width="12" height="8" fill="#7bd0ff" />
-            </svg>
-            <div class="topic-label">{topics[0].label}</div>
-          </a>
-
-          <div class="hero-divider" aria-hidden="true"></div>
-
-          <a class="topic-card" href={`/topics/${topics[1].slug}/`}>
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <circle cx="24" cy="32" r="14" fill="#6ab3ff" />
-              <circle cx="40" cy="24" r="10" fill="#9bd0ff" />
-              <circle cx="42" cy="42" r="8" fill="#2c6bff" />
-              <circle cx="24" cy="18" r="3" fill="#ffd34d" />
-              <circle cx="14" cy="38" r="3" fill="#ffd34d" />
-              <circle cx="42" cy="12" r="3" fill="#ffd34d" />
-              <circle cx="52" cy="36" r="3" fill="#ffd34d" />
-              <circle cx="34" cy="50" r="3" fill="#ffd34d" />
-            </svg>
-            <div class="topic-label">{topics[1].label}</div>
-          </a>
-
-          <div class="hero-divider" aria-hidden="true"></div>
-
-          <a class="topic-card" href={`/topics/${topics[2].slug}/`}>
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <rect x="16" y="18" width="32" height="28" rx="6" fill="#7ef3c0" />
-              <rect x="22" y="24" width="20" height="12" rx="2" fill="#11253e" />
-              <circle cx="26" cy="30" r="3" fill="#6bd0ff" />
-              <circle cx="38" cy="30" r="3" fill="#6bd0ff" />
-              <rect x="30" y="8" width="4" height="8" fill="#7ef3c0" />
-              <circle cx="32" cy="6" r="4" fill="#6bd0ff" />
-            </svg>
-            <div class="topic-label">{topics[2].label}</div>
-          </a>
+          {topics.map((topic) => (
+            <a class="topic-card" href={`/topics/${topic.slug}/`}>
+              <span class="topic-card__icon-shell" aria-hidden="true">
+                <img
+                  class:list={["topic-card__icon", topic.iconClass]}
+                  src={topic.iconSrc}
+                  alt=""
+                  width="96"
+                  height="96"
+                />
+              </span>
+              <span class="topic-label">{topic.label}</span>
+            </a>
+          ))}
         </div>
 
         <div class="cta-row">
-          <a class="hero-cta" href="/Subhash_CV.pdf" download>Download CV</a>
-          <a class="hero-cta hero-cta--secondary" href="/contact/">Contact Page</a>
+          {ctas.map((cta) => (
+            <a
+              class:list={["hero-cta", cta.secondary && "hero-cta--secondary"]}
+              href={cta.href}
+              download={cta.download || undefined}
+            >
+              <span class="hero-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  {ctaIcons[cta.icon].map((path) => (
+                    <path d={path} />
+                  ))}
+                </svg>
+              </span>
+              <span>{cta.label}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
   </div>
+
+  <script is:inline>
+    (() => {
+      const shell = document.querySelector("[data-home-shell]");
+      const typewriter = document.querySelector("[data-typewriter]");
+
+      if (!(shell instanceof HTMLElement) || !(typewriter instanceof HTMLElement)) {
+        return;
+      }
+
+      const text = typewriter.dataset.text ?? "";
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (prefersReducedMotion.matches) {
+        typewriter.textContent = text;
+        shell.dataset.motion = "reduced";
+      } else {
+        const characters = Array.from(text);
+        let index = 0;
+
+        const runTypewriter = () => {
+          index += 1;
+          typewriter.textContent = characters.slice(0, index).join("");
+
+          if (index < characters.length) {
+            const delay = index < 4 ? 86 : index < 18 ? 42 : 28;
+            window.setTimeout(runTypewriter, delay);
+          } else {
+            shell.dataset.typewriter = "done";
+          }
+        };
+
+        window.setTimeout(runTypewriter, 220);
+      }
+
+      if (!window.matchMedia("(pointer:fine)").matches || prefersReducedMotion.matches) {
+        return;
+      }
+
+      let frame = 0;
+
+      const updatePointer = (event) => {
+        if (frame) {
+          window.cancelAnimationFrame(frame);
+        }
+
+        frame = window.requestAnimationFrame(() => {
+          const x = (event.clientX / window.innerWidth - 0.5).toFixed(3);
+          const y = (event.clientY / window.innerHeight - 0.5).toFixed(3);
+          shell.style.setProperty("--pointer-x", x);
+          shell.style.setProperty("--pointer-y", y);
+        });
+      };
+
+      const resetPointer = () => {
+        shell.style.setProperty("--pointer-x", "0");
+        shell.style.setProperty("--pointer-y", "0");
+      };
+
+      shell.addEventListener("pointermove", updatePointer, { passive: true });
+      shell.addEventListener("pointerleave", resetPointer);
+    })();
+  </script>
 </BaseLayout>
