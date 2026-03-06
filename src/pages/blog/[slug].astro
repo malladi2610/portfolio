@@ -25,6 +25,7 @@ const showHeroOnPost = post.data.showHeroOnPost ?? true;
 
 <BaseLayout title={post.data.title} description={post.data.description}>
   <article class="post">
+    <a class="page-back" href="/">← Back home</a>
     <h1>{post.data.title}</h1>
     <PostMeta
       pubDate={post.data.pubDate}

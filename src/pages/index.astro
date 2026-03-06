@@ -9,8 +9,8 @@ const topics = [
 ];
 
 const ctas = [
-  { href: "/Subhash_CV.pdf", label: "Download CV", icon: "download", download: true },
-  { href: "/contact/", label: "Contact Page", icon: "contact", download: false, secondary: true }
+  { href: "/Subhash_CV.pdf", label: "Download CV", icon: "download", download: "Subhash_CV.pdf" },
+  { href: "/contact/", label: "Contact Page", icon: "contact", secondary: true }
 ];
 
 const ctaIcons = {
@@ -69,7 +69,7 @@ const ctaIcons = {
             <a
               class:list={["hero-cta", cta.secondary && "hero-cta--secondary"]}
               href={cta.href}
-              download={cta.download || undefined}
+              download={cta.download}
             >
               <span class="hero-cta__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
