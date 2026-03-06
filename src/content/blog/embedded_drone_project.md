@@ -5,7 +5,7 @@ pubDate: 2026-02-24
 updatedDate: 2026-02-24
 topic: "electronics"
 tags: ["Embedded Systems", "Rust", "Control Systems"]
-heroImage: "/images/blog/quadcopter-rust-architecture.png"
+heroImage: ""
 draft: false
 ---
 <!-- Make a simple block diagram using the report and add it here  -->

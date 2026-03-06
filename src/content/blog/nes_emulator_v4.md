@@ -5,7 +5,8 @@ pubDate: 2026-02-12
 updatedDate: 2026-02-12
 topic: "electronics"
 tags: ["rust", "emulator", "6502", "nes", "systems-programming", "debugging"]
-heroImage: ""
+heroImage: "/images/blog/nes_emulator/project_architecture/project_architecture_theme.png"
+showHeroOnPost: false
 draft: false
 ---
 

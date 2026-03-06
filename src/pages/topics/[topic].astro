@@ -40,9 +40,9 @@ const posts = allPosts
 <BaseLayout title={`${topicLabels[topic]} Posts`} description={`Posts about ${topicLabels[topic]}.`}>
   <section class="section">
     <div class="container">
+      <a class="page-back" href="/">← Back home</a>
       <div class="page-intro">
         <h1>{topicLabels[topic]}</h1>
-        <p class="hero-subtitle">Focused posts on {topicLabels[topic]}.</p>
       </div>
 
       {posts.length === 0 && (

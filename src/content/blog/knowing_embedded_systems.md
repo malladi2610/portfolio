@@ -5,7 +5,7 @@ pubDate: 2026-02-15
 updatedDate: 2026-02-15
 topic: "electronics"
 tags: ["embedded-systems", "firmware", "mcu", "debugging", "rtos", "career"]
-heroImage: "/images/blog/knowing-how-much-embedded-is-enough-hero.png"
+heroImage: ""
 draft: false
 ---
 <!-- Make sure the exisiting block diagram works and clear -->

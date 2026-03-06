@@ -3,37 +3,84 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site";
 
 const hasEndpoint = !siteConfig.contactFormEndpoint.includes("your-form-id");
+
+const socialIcons = {
+  linkedin:
+    "M5.02 8.02H8.9V21H5.02zM6.96 2.3a2.27 2.27 0 1 0 0 4.54 2.27 2.27 0 0 0 0-4.54Zm4.37 5.72h3.72v1.77h.05c.52-.98 1.79-2.01 3.69-2.01 3.95 0 4.68 2.6 4.68 5.97V21h-3.88v-5.8c0-1.39-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05V21h-3.89V8.02Z",
+  x: "M5.2 4h4.1l3.25 4.53L16.92 4H20l-5.98 6.87L21 20h-4.1l-3.58-4.9L8.93 20H6l6.01-6.97L5.2 4Z",
+  github:
+    "M12 2C6.48 2 2 6.58 2 12.24c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.02-1.88-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.58 2.35 1.13 2.92.86.09-.67.35-1.13.63-1.39-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.24 9.24 0 0 1 5 0c1.9-1.33 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.33 4.81-4.56 5.07.36.32.68.95.68 1.91 0 1.38-.01 2.49-.01 2.83 0 .27.18.6.69.49A10.3 10.3 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z",
+  youtube:
+    "M21.58 7.19a2.84 2.84 0 0 0-2-2c-1.76-.47-8.8-.47-8.8-.47s-7.04 0-8.8.47a2.84 2.84 0 0 0-2 2C0 8.95 0 12 0 12s0 3.05.4 4.81a2.84 2.84 0 0 0 2 2c1.76.47 8.8.47 8.8.47s7.04 0 8.8-.47a2.84 2.84 0 0 0 2-2C22 15.05 22 12 22 12s0-3.05-.42-4.81ZM9 15.6V8.4L15.2 12 9 15.6Z",
+  instagram:
+    "M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7Zm10 1.8c1.77 0 3.2 1.43 3.2 3.2v10c0 1.77-1.43 3.2-3.2 3.2H7A3.2 3.2 0 0 1 3.8 17V7A3.2 3.2 0 0 1 7 3.8h10Zm-5 2.58A5.62 5.62 0 0 0 6.38 12 5.62 5.62 0 0 0 12 17.62 5.62 5.62 0 0 0 17.62 12 5.62 5.62 0 0 0 12 6.38Zm0 1.82A3.8 3.8 0 0 1 15.8 12 3.8 3.8 0 0 1 12 15.8 3.8 3.8 0 0 1 8.2 12 3.8 3.8 0 0 1 12 8.2Zm5.86-2.44a1.34 1.34 0 1 0 0 2.68 1.34 1.34 0 0 0 0-2.68Z"
+};
+
 ---
 
-<BaseLayout title="Contact" description="Get in touch.">
-  <section class="section">
-    <div class="container">
-      <div class="page-intro">
+<BaseLayout title="Contact" description="Connect for collaborations, engineering roles, and project conversations.">
+  <section class="section contact-shell">
+    <div class="container contact-center">
+      <div class="page-intro contact-intro">
         <h1>Contact</h1>
-        <p class="hero-subtitle">Send a message and I will reply as soon as possible.</p>
       </div>
 
-      {!hasEndpoint && (
-        <p>
-          Form endpoint is not configured yet. Update `src/config/site.ts` with your Formspree URL.
-        </p>
-      )}
+      <div class="contact-socials" aria-label="Social links">
+        {siteConfig.socialLinks.map((social) => (
+          <a
+            class="social-icon-link"
+            href={social.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={social.label}
+            title={social.label}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d={socialIcons[social.id]} />
+            </svg>
+          </a>
+        ))}
+      </div>
 
-      <form class="form" method="POST" action={siteConfig.contactFormEndpoint}>
-        <label>
-          Name
-          <input type="text" name="name" placeholder="Your name" required />
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" placeholder="you@email.com" required />
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="6" placeholder="How can I help?" required></textarea>
-        </label>
-        <button type="submit">Send Message</button>
-      </form>
+      <div class="contact-panel contact-panel--form">
+        {!hasEndpoint && (
+          <p class="form-status">
+            Form endpoint is not configured yet. Update `src/config/site.ts` with your Formspree URL.
+          </p>
+        )}
+
+        <form class="form" method="POST" action={siteConfig.contactFormEndpoint}>
+          <label>
+            <span class="form-label">Name</span>
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
+          </label>
+
+          <label>
+            <span class="form-label">Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="you@email.com"
+              autocomplete="email"
+              inputmode="email"
+              required
+            />
+          </label>
+
+          <label>
+            <span class="form-label">Message</span>
+            <textarea
+              name="message"
+              rows="6"
+              placeholder="Tell me a bit about your project or enquiry."
+              autocomplete="off"
+              required
+            ></textarea>
+          </label>
+
+          <button class="form-submit" type="submit">Send Message</button>
+        </form>
+      </div>
     </div>
   </section>
 </BaseLayout>

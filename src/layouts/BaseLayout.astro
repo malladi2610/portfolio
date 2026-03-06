@@ -27,20 +27,8 @@ const canonical = new URL(Astro.url.pathname, normalizedSiteUrl).toString();
   </head>
   <body>
     <ViewPing />
-    <header class="site-header">
-      <a class="site-logo" href="/">Subhash</a>
-      <nav class="site-nav">
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-    </header>
     <main>
       <slot />
     </main>
-    <footer class="site-footer">
-      <span>Copyright {new Date().getFullYear()} Subhash</span>
-      <span>Built with Astro</span>
-    </footer>
   </body>
 </html>
