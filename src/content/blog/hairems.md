@@ -6,7 +6,7 @@ pubDate: 2026-02-28
 updatedDate: 2026-02-28
 topics: ["electronics", "ai"]
 tags: ["Edge AI", "IoT", "Embedded Systems"]
-heroImage: "/images/blog/hairems-system-architecture-pro.svg"
+heroImage: "/images/blog/hairems/hairems-system-architecture-pro.svg"
 showHeroOnPost: false
 draft: false
 ---
@@ -29,7 +29,7 @@ Emergency sound detection was handled entirely differently. Using an **Arduino N
 
 By running inference directly on the device, we enabled real-time classification without relying on constant cloud processing.
 
-![HAIREMS System Architecture](/images/blog/hairems-system-architecture-pro.svg)
+![HAIREMS System Architecture](/images/blog/hairems/hairems-system-architecture-pro.svg)
 
 ### The Integration Challenges
 

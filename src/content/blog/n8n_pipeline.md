@@ -6,7 +6,7 @@ pubDate: 2026-03-02
 updatedDate: 2026-03-02
 topics: ["ai"]
 tags: ["n8n", "OpenAI", "Notion"]
-heroImage: "/images/blog/n8n-gmail-ai-agent-workflow.svg"
+heroImage: "/images/blog/n8n_project/n8n-gmail-ai-agent-workflow.svg"
 showHeroOnPost: false
 draft: false
 ---
@@ -33,7 +33,7 @@ Next comes the evaluation layer, where I embedded four CV profiles in a structur
 
 Only high-confidence matches move forward into a **Notion database**, where I track the company name, platform, job title, decision, score, and follow-up dates.
 
-![Workflow overview](/images/blog/n8n-gmail-ai-agent-workflow.svg)
+![Workflow overview](/images/blog/n8n_project/n8n-gmail-ai-agent-workflow.svg)
 
 ### The Trenches
 
