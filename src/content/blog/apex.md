@@ -5,7 +5,7 @@ pubDate: 2026-02-27
 updatedDate: 2026-02-27
 topic: "electronics"
 tags: ["IoT", "Hydroponics", "Embedded Systems"]
-heroImage: "/images/blog/apex-final-system-architecture.svg"
+heroImage: "/images/blog/apex/apex-final-system-architecture.svg"
 showHeroOnPost: false
 draft: false
 ---
