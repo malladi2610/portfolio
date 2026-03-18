@@ -5,7 +5,7 @@ pubDate: 2026-03-16
 updatedDate: 2026-03-16
 topics: [electronics]
 tags: ["embedded-world", "edge-ai", "embedded-systems"]
-heroImage: "/images/blog/embedded_world_2026/embedded_world_2026.jpeg"
+heroImage: ""
 showHeroOnPost: false
 draft: false
 ---
