@@ -9,7 +9,9 @@
   --surface-strong: rgba(10, 19, 39, 0.82);
   --surface-soft: rgba(16, 28, 52, 0.48);
   --surface-card: rgba(12, 23, 45, 0.72);
-  --text: #f4f7ff;
+  --text-strong: #ebf1ff;
+  --text: #ccd8f3;
+  --text-soft: #b6c3e1;
   --muted: #9eaccd;
   --muted-strong: #c8d3f0;
   --accent: #7fa6ff;
@@ -124,9 +126,21 @@ main {
 .post h2,
 .post h3 {
   font-family: "Sora", system-ui, sans-serif;
+  color: var(--text-strong);
   line-height: 1.08;
   letter-spacing: -0.045em;
   text-wrap: balance;
+}
+
+p,
+li {
+  color: var(--text);
+}
+
+strong,
+b {
+  color: var(--text-strong);
+  font-weight: 700;
 }
 
 .section-kicker,
@@ -209,7 +223,7 @@ main {
 .hero-subtitle {
   margin: 0;
   max-width: 40rem;
-  color: var(--muted);
+  color: var(--text-soft);
   font-size: 1rem;
   text-wrap: pretty;
 }
@@ -369,7 +383,7 @@ main {
 .hero-title {
   margin: 0;
   display: inline-flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: center;
   min-height: 1.1em;
   max-width: none;
@@ -383,6 +397,20 @@ main {
   white-space: nowrap;
   text-wrap: nowrap;
   overflow: visible;
+}
+
+.hero-title__lead {
+  color: var(--text-strong);
+  font-size: 1.36em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-right: 0.18em; /* adjust this */
+}
+
+.hero-title__typed {
+  display: inline-flex;
+  align-items: flex-end;
 }
 
 .hero-title__text {
@@ -487,6 +515,7 @@ main {
   max-width: none;
   position: relative;
   left: -30px;
+  top: -4px; /* move up by 4px */
 }
 
 .topic-label {

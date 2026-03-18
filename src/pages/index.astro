@@ -24,6 +24,8 @@ const ctaIcons = {
     "M4.5 8.25 12 13.5l7.5-5.25"
   ]
 };
+
+const heroAriaLabel = `${siteConfig.heroGreeting} ${siteConfig.heroIntro}`;
 ---
 
 <BaseLayout title="Home" description="Portfolio and blog on Electronics, AI, and Robotics.">
@@ -40,10 +42,13 @@ const ctaIcons = {
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <h1 class="hero-title" aria-label={siteConfig.heroIntro}>
-            <span class="hero-title__text" data-typewriter data-text={siteConfig.heroIntro} aria-hidden="true"></span>
-            <span class="typewriter-cursor" aria-hidden="true"></span>
-            <noscript>{siteConfig.heroIntro}</noscript>
+          <h1 class="hero-title" aria-label={heroAriaLabel}>
+            <span class="hero-title__lead" aria-hidden="true">{siteConfig.heroGreeting}</span>
+            <span class="hero-title__typed" aria-hidden="true">
+              <span class="hero-title__text" data-typewriter data-text={` ${siteConfig.heroIntro}`}></span>
+              <span class="typewriter-cursor"></span>
+            </span>
+            <noscript>{" "}{siteConfig.heroIntro}</noscript>
           </h1>
         </div>
 
