@@ -11,6 +11,7 @@ scripts/dcd_pipeline/state/secrets.json
 docs/Reference_materials/
 docs/DCD_data/
 src/content/blog/extras/
+extras/
 scripts/*
 scripts/dcd_pipeline/evidence/
 scripts/dcd_pipeline/state/actions.jsonl
