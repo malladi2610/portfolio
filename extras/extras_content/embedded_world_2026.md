@@ -1,0 +1,21 @@
+---
+title: "A snapshot of the trends observed in Embedded World"
+description: "One-sentence summary for previews."
+pubDate: 2026-02-06
+updatedDate:
+topics: [electronics]
+tags: ["tag-one", "tag-two"]
+heroImage: "/images/blog/your-hero-image.png"
+showHeroOnPost: true
+draft: true
+---
+# My experience
+1. This is second embedded event that I participated after 7 years, first one was in 2019 and the most recent one was 2026 embedded world, it was like seeing the world developments occured over the past 7 years in the embedded domain.
+2. I will be covering the points on the Hardware, software and the solutions that were developed as a port of these advancements
+3. Starting with hardware: With the changes happening to the core architecture of the deveices by addition of the accelerator cores (like NPUs) [Qualcomm] and coming up with new computing paradigms like neuromorphic [innetera] and coming up with clever hardware computation optimisations [STM32 near threshold technology] have made it possible to do efficient computations at minimal power budgets which led to the developement of efficient and intelligent edge application 
+4. In comparision to 2019, where the hardware was not that powerful and there was always a tradeoff b/w the performance and the power efficient solution development and on choosing which ever the data is offloaded to cloud to develop solution which are possible now in 2026
+4. Moving on with the software, Along with the improvements being made to hardware, Clever software solutions are also required to talk the advanntage of this changing hardware landscape and this is being done at multiple level like the workload/task scheduling to efficiently utilse the all the available resources of the hardware [incredibuild], optimising the AI models and making them schedule to utilise hardware resources effectively, this is done by having a framework that takes the model as the input and optimises it and makes it ready to the hardware by understanding the available resources [NotaAI] and finally utising the newly found model optimisation techniques which have shown promising results in the literature and translating them into a viable solution that can be utilised by the business [EnerzieAI].
+5. Compared this to 2019, I personally haven't observed such clever software optimistaions as back in 2019 the Moore law was still progressing as expected and the though of approaching the wall soon was bound only to academic institutes and hasn't been a mainstream view and development of such solutions was quite less
+6. This advancement in the hardware and clever software solutions that are being developed have led to development of solution which were not possible back in 2019 like having a affordable EdgeAI systems that can run SoTA equivalent at your desk which a very small footprint and having a acceptable perfomace (Tokens/sec) [Qualcomm dragonchip and it's solutions], back in 2019 being able to run CV application on the edge is considered a revolution but the system had it's own flaws that quite restricted it's penetrations to more area, but now due to the better hardware and the clever software optimistions a new class of vision models (VLM) are able to the deployed on the edge and being more context based than just a rule based system on how the CV was [NoTAAI VLM model implementations], and finally with the hardware optimisations tricks and the new computation paradigm have led to development of solutions that makes AI models run at microamps energy consumption [STM32 nearfield facial application] and pradigm like the neuromphic computing are leading to the development of the hardware solutions like the smart Smoke detectors which when done with a treditional computing paradigm [innatera smart detector by partner company] would not be possible.
+7. There are a lot more innovative solution by more that 1000 companies that were present in the event and above are the few I could cover considering the vastness of the event.
+8. Overall this event showcases that by the introduction of the GenAI arond four years back and it's push towards the advancements of the engineering solutiosn have lead to some really clever hardware, software developments and led to solution that actually improve the Quality of life rather than just being implemented for the sake of it.
