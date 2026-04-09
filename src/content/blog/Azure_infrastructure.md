@@ -22,7 +22,7 @@ I approached the project by turning those requirements into a sequence of engine
 
 Once the workflow was clear, I built the template locally first. That gave me room to test the request shape, the data flow between services, and the way results were written into the database before adding cloud complexity. The app exposed endpoints such as `POST /api/classifications/run`, the workflow handled the orchestration around fetching and preparing the data, and the database was split logically between the **classifier** records and the **n8ndb** runtime metadata. By the time I moved to Azure, I was testing infrastructure, not still guessing about application behavior.
 
-That local-first approach also helped with the hardest part of the project, which was integration discipline. Small mismatches in `profileId`, payload structure, or stored JSON fields could break the full run, even when each individual component looked correct on its own. This project was a step ahead of my earlier **n8n_pipeline** work because the workflow was no longer the whole product, it had to operate inside a complete template with a frontend, database, containers, and deployment flow.
+That local-first approach also helped with the hardest part of the project, which was integration discipline. Small mismatches in `profileId`, payload structure, or stored JSON fields could break the full run, even when each individual component looked correct on its own. This project was a step ahead of my earlier [**n8n_pipeline**](https://itsmns.dev/blog/n8n_pipeline/) work because the workflow was no longer the whole product, it had to operate inside a complete template with a frontend, database, containers, and deployment flow.
 
 What helped me most here was standardizing what moved between the app, n8n, and PostgreSQL. Once the payloads and stored fields were consistent, the system became much easier to reason about, and the testing started to reflect real behavior instead of partial success. It also reinforced a development pattern that I now trust a lot more: map the workflow first, implement locally, validate the contracts thoroughly, then move to cloud deployment.
 
@@ -35,3 +35,5 @@ The final MVP delivered what the brief actually needed: a reusable classificatio
 <p style="text-align: center; margin-top: -8px;"><em>Figure 1. Infrastructure view generated after the Azure deployment was completed.</em></p>
 
 What I value most about this project is not just the final deployment, but the process behind it, because it showed me how much smoother an end-to-end build becomes when the workflow is planned early, the local version is validated properly, and the cloud deployment comes last instead of first.
+
+Project repository: [malladi2610/Cloud_infra_project](https://github.com/malladi2610/Cloud_infra_project.git)
