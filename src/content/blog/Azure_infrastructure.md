@@ -10,24 +10,28 @@ showHeroOnPost: false
 draft: false
 ---
 
-This project started as a freelance requirement with a clear goal: classify data from a **source URL** using context pulled from a **reference website**. For this version, I designed it as a **cloud-portable architecture** and deployed it on **Azure**. I did not want a one-off script. I wanted a reusable template that could trigger runs from a frontend, orchestrate the logic in **n8n**, store structured results in **PostgreSQL**, and be deployed repeatably with **Terraform**.
+The freelance brief that I received was as follows:
 
-The main challenge was not the classification logic alone. It was making the full path work end to end under a real delivery timeline. The template needed an API layer to trigger jobs, workflow steps that could validate and transform inputs, a database model that could store both prepared jobs and final results, and a cloud setup that would not turn deployment into a separate project.
+- classify data from a **source URL** using context from a **reference website**
+- build the solution as a usable end-to-end template, not just an isolated workflow
+- connect a frontend trigger layer, **n8n** orchestration, and **PostgreSQL** persistence
+- keep the architecture cloud-portable, while deploying this version on **Azure**
+- provision the infrastructure in a repeatable way using **Terraform**
 
-I also wanted the template to stay portable at the architecture level. Even though this release runs on Azure, the structure itself is not tied to one cloud. The model provider can be switched between **OpenAI** and **Azure OpenAI**, and the core flow stays the same.
+I approached the project by turning those requirements into a sequence of engineering decisions. Before writing code, I mapped the workflow from input to output so I could see where each requirement would live in the system. The frontend and API would accept the classification request, n8n would orchestrate the processing steps, PostgreSQL would store job records and results, and Terraform would handle the cloud infrastructure. That planning stage mattered more than I expected because it stopped the project from turning into a collection of disconnected parts.
 
-One thing that helped a lot was mapping the workflow before writing code. I broke the system into clear stages: accept a classification request, validate the payload, fetch the source data, fetch the reference taxonomy, prepare a structured payload, store a prepared record, call the model, normalize the response, and save the final result. That gave me a stable contract across the frontend, the workflow, and the database.
+Once the workflow was clear, I built the template locally first. That gave me room to test the request shape, the data flow between services, and the way results were written into the database before adding cloud complexity. The app exposed endpoints such as `POST /api/classifications/run`, the workflow handled the orchestration around fetching and preparing the data, and the database was split logically between the **classifier** records and the **n8ndb** runtime metadata. By the time I moved to Azure, I was testing infrastructure, not still guessing about application behavior.
 
-From there, I implemented the template locally first. The app exposed endpoints such as `POST /api/classifications/run`, n8n handled the request orchestration, and PostgreSQL was split logically between the **classifier** data and the **n8ndb** runtime metadata. Only after the local path worked cleanly did I move to Terraform and Azure resources like **Container Apps**, **Container Registry**, **Key Vault**, managed identity, and **PostgreSQL Flexible Server**.
+That local-first approach also helped with the hardest part of the project, which was integration discipline. Small mismatches in `profileId`, payload structure, or stored JSON fields could break the full run, even when each individual component looked correct on its own. This project was a step ahead of my earlier **n8n_pipeline** work because the workflow was no longer the whole product, it had to operate inside a complete template with a frontend, database, containers, and deployment flow.
 
-The hardest part was integration discipline. Small mismatches in `profileId`, payload structure, or stored JSON fields were enough to break the flow. This project was a step ahead of my earlier **n8n_pipeline** work, where the workflow existed in isolation. Here, the workflow had to behave as part of a complete product template.
+What helped me most here was standardizing what moved between the app, n8n, and PostgreSQL. Once the payloads and stored fields were consistent, the system became much easier to reason about, and the testing started to reflect real behavior instead of partial success. It also reinforced a development pattern that I now trust a lot more: map the workflow first, implement locally, validate the contracts thoroughly, then move to cloud deployment.
 
-The fix was not a clever workaround. It was tighter contracts and better sequencing. I standardized what moved between the app, n8n, and the database, then tested the full path locally before touching cloud infrastructure. That approach saved time later because deployment bugs were reduced to infrastructure issues instead of mixed application and workflow problems.
+This project was also my first serious exposure to **infrastructure as code** for a full stack application. I had worked with workflows before, but this was the first time I connected **Docker**, **n8n**, **PostgreSQL**, **Terraform**, and Azure into one working template. Watching Terraform bring up the Azure resources cleanly, then seeing the deployed system behave the same way as the local version, was probably the biggest learning point in the whole sprint.
 
-This was also my first serious use of **infrastructure as code** for a complete stack. Seeing Terraform bring up the Azure footprint cleanly was one of the biggest takeaways from the project, along with practical experience in **Docker**, **n8n**, **PostgreSQL**, and Azure deployment patterns.
-
-The final MVP delivered a working classification template with a frontend trigger layer, workflow orchestration, persistent job history, and a repeatable Azure deployment. The diagram below is the actual infrastructure view generated after the Azure deployment was completed.
+The final MVP delivered what the brief actually needed: a reusable classification template with a frontend trigger layer, workflow orchestration, persistent job history, and a repeatable Azure deployment.
 
 <img src="/images/blog/azure-classification-infra-diagram.svg" alt="Azure infrastructure block diagram for the deployed classification template" width="820" height="656" loading="lazy" style="width: min(100%, 820px); height: auto; display: block; margin: 28px auto;" />
 
-What I value most about this project is the process it forced me to learn: map the workflow first, build locally, verify the contracts, then deploy.
+<p style="text-align: center; margin-top: -8px;"><em>Figure 1. Infrastructure view generated after the Azure deployment was completed.</em></p>
+
+What I value most about this project is not just the final deployment, but the process behind it, because it showed me how much smoother an end-to-end build becomes when the workflow is planned early, the local version is validated properly, and the cloud deployment comes last instead of first.
