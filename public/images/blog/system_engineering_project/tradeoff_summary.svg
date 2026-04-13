@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="900" viewBox="0 0 1900 900" role="img" aria-labelledby="title desc">
+  <title>Trade-off summary table</title>
+  <desc>Weighted trade-off table comparing the five explored Barcelona water management concepts.</desc>
+  <defs>
+    <style>
+      .bg { fill: #060b18; }
+      .panel { fill: #0b1223; stroke: #2d3758; stroke-width: 2; }
+      .header { fill: #1b2644; }
+      .winner { fill: #273455; }
+      .grid { stroke: #44506f; stroke-width: 1.4; }
+      .title { font: 700 42px Arial, sans-serif; fill: #edf2ff; }
+      .subtitle { font: 500 20px Arial, sans-serif; fill: #c0c9e3; }
+      .th { font: 700 24px Arial, sans-serif; fill: #edf2ff; }
+      .thsmall { font: 700 13px Arial, sans-serif; fill: #edf2ff; }
+      .thtiny { font: 600 12px Arial, sans-serif; fill: #d7dff6; }
+      .cell { font: 500 18px Arial, sans-serif; fill: #d2daf0; }
+      .cat { font: italic 700 26px Arial, sans-serif; fill: #a8c0ff; }
+      .score { font: 700 22px Arial, sans-serif; fill: #edf2ff; }
+      .overall { font: 800 26px Arial, sans-serif; fill: #edf2ff; }
+    </style>
+  </defs>
+  <rect class="bg" width="1900" height="900" rx="28"/>
+  <rect class="panel" x="36" y="38" width="1828" height="820" rx="38"/>
+  <text x="116" y="114" class="title">Trade-off summary</text>
+  <text x="116" y="158" class="subtitle">The household greywater reuse concept ranked highest after weighted scoring across ten criteria.</text>
+
+  <rect class="panel" x="82" y="204" width="1736" height="584" rx="26"/>
+  <rect class="header" x="82" y="204" width="1736" height="84" rx="26"/>
+  <rect class="winner" x="962" y="204" width="180" height="584"/>
+
+  <line class="grid" x1="282" y1="204" x2="282" y2="788"/>
+  <line class="grid" x1="842" y1="204" x2="842" y2="788"/>
+  <line class="grid" x1="962" y1="204" x2="962" y2="788"/>
+  <line class="grid" x1="1142" y1="204" x2="1142" y2="788"/>
+  <line class="grid" x1="1322" y1="204" x2="1322" y2="788"/>
+  <line class="grid" x1="1502" y1="204" x2="1502" y2="788"/>
+  <line class="grid" x1="1682" y1="204" x2="1682" y2="788"/>
+  <line class="grid" x1="82" y1="288" x2="1818" y2="288"/>
+  <line class="grid" x1="82" y1="336" x2="1818" y2="336"/>
+  <line class="grid" x1="82" y1="384" x2="1818" y2="384"/>
+  <line class="grid" x1="82" y1="432" x2="1818" y2="432"/>
+  <line class="grid" x1="82" y1="480" x2="1818" y2="480"/>
+  <line class="grid" x1="82" y1="528" x2="1818" y2="528"/>
+  <line class="grid" x1="82" y1="576" x2="1818" y2="576"/>
+  <line class="grid" x1="82" y1="624" x2="1818" y2="624"/>
+  <line class="grid" x1="82" y1="672" x2="1818" y2="672"/>
+  <line class="grid" x1="82" y1="720" x2="1818" y2="720"/>
+
+  <text x="112" y="255" class="th">Category</text>
+  <text x="308" y="255" class="th">Criteria</text>
+  <text x="874" y="255" class="th">Weight</text>
+
+  <text x="1003" y="238" class="thsmall">Water reusing</text>
+  <text x="984" y="255" class="thtiny">recycling system</text>
+  <text x="999" y="271" class="thtiny">household level</text>
+
+  <text x="1163" y="238" class="thsmall">Evaporation loss</text>
+  <text x="1166" y="255" class="thtiny">current reservoirs</text>
+  <text x="1192" y="271" class="thtiny">reduction</text>
+
+  <text x="1363" y="238" class="thsmall">Green roofs</text>
+  <text x="1336" y="255" class="thtiny">water-collecting</text>
+  <text x="1361" y="271" class="thtiny">buildings</text>
+
+  <text x="1531" y="238" class="thsmall">Expanding and</text>
+  <text x="1556" y="255" class="thtiny">building</text>
+  <text x="1547" y="271" class="thtiny">reservoirs</text>
+
+  <text x="1693" y="238" class="thsmall">Sensitivity and</text>
+  <text x="1723" y="255" class="thtiny">awareness</text>
+  <text x="1720" y="271" class="thtiny">campaign</text>
+
+  <text x="112" y="412" class="cat">Desirability</text>
+  <text x="112" y="556" class="cat">Feasibility</text>
+  <text x="112" y="700" class="cat">Viability</text>
+
+  <text x="308" y="322" class="cell">Reduction in water consumption</text>
+  <text x="308" y="370" class="cell">Long-term water availability</text>
+  <text x="308" y="418" class="cell">Improvement of the current systems</text>
+  <text x="308" y="466" class="cell">Increase in water recycling or reuse</text>
+  <text x="308" y="514" class="cell">Scale, budget and complexity</text>
+  <text x="308" y="562" class="cell">Reduction in interruption of supply</text>
+  <text x="308" y="610" class="cell">Minimization of inconveniences</text>
+  <text x="308" y="658" class="cell">Cost-effectiveness</text>
+  <text x="308" y="706" class="cell">Returns on investment</text>
+  <text x="308" y="754" class="cell">Low environmental footprint</text>
+  <text x="308" y="798" class="overall">Overall</text>
+
+  <text x="912" y="322" class="cell">1</text>
+  <text x="912" y="370" class="cell">1</text>
+  <text x="912" y="418" class="cell">1</text>
+  <text x="912" y="466" class="cell">1</text>
+  <text x="902" y="514" class="cell">1.2</text>
+  <text x="902" y="562" class="cell">0.8</text>
+  <text x="902" y="610" class="cell">0.8</text>
+  <text x="912" y="658" class="cell">1</text>
+  <text x="912" y="706" class="cell">1</text>
+  <text x="902" y="754" class="cell">1.2</text>
+  <text x="902" y="798" class="overall">10</text>
+
+  <text x="1035" y="322" class="score">4</text><text x="1215" y="322" class="score">1</text><text x="1395" y="322" class="score">3</text><text x="1575" y="322" class="score">1</text><text x="1755" y="322" class="score">4</text>
+  <text x="1035" y="370" class="score">3</text><text x="1215" y="370" class="score">3</text><text x="1395" y="370" class="score">4</text><text x="1575" y="370" class="score">3</text><text x="1755" y="370" class="score">2</text>
+  <text x="1035" y="418" class="score">2</text><text x="1215" y="418" class="score">4</text><text x="1395" y="418" class="score">1</text><text x="1575" y="418" class="score">3</text><text x="1755" y="418" class="score">1</text>
+  <text x="1035" y="466" class="score">4</text><text x="1215" y="466" class="score">1</text><text x="1395" y="466" class="score">3</text><text x="1575" y="466" class="score">1</text><text x="1755" y="466" class="score">2</text>
+  <text x="1035" y="514" class="score">2</text><text x="1215" y="514" class="score">4</text><text x="1395" y="514" class="score">1</text><text x="1575" y="514" class="score">2</text><text x="1755" y="514" class="score">4</text>
+  <text x="1035" y="562" class="score">3</text><text x="1215" y="562" class="score">3</text><text x="1395" y="562" class="score">4</text><text x="1575" y="562" class="score">3</text><text x="1755" y="562" class="score">3</text>
+  <text x="1035" y="610" class="score">2</text><text x="1215" y="610" class="score">4</text><text x="1395" y="610" class="score">3</text><text x="1575" y="610" class="score">3</text><text x="1755" y="610" class="score">1</text>
+  <text x="1035" y="658" class="score">2</text><text x="1215" y="658" class="score">4</text><text x="1395" y="658" class="score">2</text><text x="1575" y="658" class="score">2</text><text x="1755" y="658" class="score">3</text>
+  <text x="1035" y="706" class="score">3</text><text x="1215" y="706" class="score">3</text><text x="1395" y="706" class="score">3</text><text x="1575" y="706" class="score">2</text><text x="1755" y="706" class="score">1</text>
+  <text x="1035" y="754" class="score">4</text><text x="1215" y="754" class="score">2</text><text x="1395" y="754" class="score">4</text><text x="1575" y="754" class="score">2</text><text x="1755" y="754" class="score">4</text>
+  <text x="1012" y="798" class="overall">29.2</text><text x="1192" y="798" class="overall">28.8</text><text x="1372" y="798" class="overall">27.6</text><text x="1552" y="798" class="overall">21.6</text><text x="1732" y="798" class="overall">25.8</text>
+</svg>
