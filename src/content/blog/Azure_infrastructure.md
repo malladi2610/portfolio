@@ -30,7 +30,7 @@ This project was also my first serious exposure to **infrastructure as code** fo
 
 The final MVP delivered what the brief actually needed: a reusable classification template with a frontend trigger layer, workflow orchestration, persistent job history, and a repeatable Azure deployment.
 
-<img src="/images/blog/azure-classification-infra-diagram.svg" alt="Azure infrastructure block diagram for the deployed classification template" width="820" height="656" loading="lazy" style="width: min(100%, 820px); height: auto; display: block; margin: 28px auto;" />
+<img src="/images/Azure_infrastructure/blog/azure-classification-infra-diagram.svg" alt="Azure infrastructure block diagram for the deployed classification template" width="820" height="656" loading="lazy" style="width: min(100%, 820px); height: auto; display: block; margin: 28px auto;" />
 
 <p style="text-align: center; margin-top: -8px;"><em>Figure 1. Infrastructure view generated after the Azure deployment was completed.</em></p>
 
