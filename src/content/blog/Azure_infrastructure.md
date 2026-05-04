@@ -5,7 +5,7 @@ pubDate: 2026-04-04
 updatedDate: 2026-04-09
 topics: ["ai"]
 tags: ["Azure", "Terraform", "n8n", "PostgreSQL"]
-heroImage: "/images/blog/azure-classification-infra-diagram.svg"
+heroImage: "/images/Azure_infrastructure/blog/azure-classification-infra-diagram.svg"
 showHeroOnPost: false
 draft: false
 ---
