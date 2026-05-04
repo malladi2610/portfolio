@@ -10,9 +10,9 @@ showHeroOnPost: false
 draft: false
 ---
 
-This was the second part of a freelance Azure infrastructure project. The first part focused on a classification workflow, while this part focused on a more general problem: how to run AI jobs when some of them need an immediate response and others can wait for cheaper batch processing.
+The freelance brief for this project was to build an Azure-based execution layer for AI jobs that could support both immediate runs and queued batch processing. Some jobs needed to return a result while the user was still in the flow, while others could wait so the system could handle cost and throughput more efficiently.
 
-The freelance brief for this part was to support AI jobs in two modes:
+The system had to support AI jobs in two modes:
 
 - **sync execution**, where a job is dispatched immediately and completed as part of the active workflow
 - **batch execution**, where jobs are queued, claimed into a batch window, submitted to a provider batch API, and written back when complete
@@ -21,7 +21,8 @@ I used the PDF summarization flow as the working use case to validate the path e
 
 Before implementing the workflow, I mapped the state changes that every AI job would need. A sync job moves from created to processing to completed or failed. A batch job starts as queued work, gets claimed into a batch window, receives provider metadata, and then gets updated when the batch result is ingested. This helped me separate the responsibilities clearly before building the services.
 
-The app owns the product-facing layer: authentication, profile selection, job creation, job history, result viewing, admin visibility, and internal APIs. It also owns the durable state boundaries, so every job has a clear record in PostgreSQL and can be inspected after execution. n8n owns the orchestration layer. It receives a job from the app, follows the correct execution branch, calls the AI provider, and writes the result back through the application's internal APIs. This kept provider logic and long-running workflow behavior out of the web app, while still keeping the app as the source of truth for job state.
+The app owns the product-facing layer: authentication, profile selection, job creation, job history, result viewing, admin visibility, and internal APIs. It also owns the durable state boundaries, so every job has a clear record in PostgreSQL and can be inspected after execution. 
+n8n owns the orchestration layer: It receives a job from the app, follows the correct execution branch, calls the AI provider, and writes the result back through the application's internal APIs. This kept provider logic and long-running workflow behavior out of the web app, while still keeping the app as the source of truth for job state.
 
 To keep the execution flow general, I used a profile-driven contract between the app and n8n. A profile defines which fields are needed for a run, which values are allowed, which webhook should be called, and how the request payload should be mapped before it reaches n8n. That means a new AI job type can reuse the same app structure as long as it defines the required inputs and webhook mapping.
 
