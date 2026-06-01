@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { siteConfig } from "../config/site";
-import ViewPing from "../components/ViewPing.astro";
+import VisitorTracking from "../components/VisitorTracking.astro";
 
 const { title, description, ogImage } = Astro.props;
 const pageTitle = title ? `${title} | Subhash` : "Subhash";
@@ -26,7 +26,7 @@ const canonical = new URL(Astro.url.pathname, normalizedSiteUrl).toString();
     {ogImage && <meta property="og:image" content={ogImage} />}
   </head>
   <body>
-    <ViewPing />
+    <VisitorTracking />
     <main>
       <slot />
     </main>
