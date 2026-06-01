@@ -3,8 +3,8 @@ title: "Stabilizing a Quadcopter with Rust and Fixed-Point Control"
 description: "Designing a safety-critical quadcopter control system in Rust with PID control, sensor fusion, and robust state management."
 pubDate: 2026-02-24
 updatedDate: 2026-02-24
-topic: "electronics"
-tags: ["Embedded Systems", "Rust", "Control Systems"]
+topics: ["electronics", "robotics"]
+tags: ["Embedded Systems", "Rust", "Control Systems", "Robotics"]
 heroImage: ""
 draft: false
 ---
