@@ -135,11 +135,23 @@ async function collectVisit(request, env, ctx) {
 
   if (!visit.isBot) {
     if (env.NOTIFICATION_EMAIL && env.EMAIL_NOTIFICATIONS !== "false") {
-      ctx.waitUntil(sendVisitEmail(env, visit));
+      ctx.waitUntil(sendVisitEmail(env, visit).catch((err) => {
+        console.error("visit_email_failed", {
+          message: err && err.message,
+          stack: err && err.stack,
+          path: visit.path,
+          to: env.EMAIL_TO
+        });
+      }));
     }
 
     if (env.VISIT_WEBHOOK_URL) {
-      ctx.waitUntil(sendVisitWebhook(env, visit));
+      ctx.waitUntil(sendVisitWebhook(env, visit).catch((err) => {
+        console.error("visit_webhook_failed", {
+          message: err && err.message,
+          path: visit.path
+        });
+      }));
     }
   }
 
