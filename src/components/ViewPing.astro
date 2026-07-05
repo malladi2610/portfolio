@@ -1,0 +1,67 @@
+---
+import { siteConfig } from "../config/site";
+
+const endpoint = siteConfig.viewPingUrl;
+---
+{endpoint && (
+  <script is:inline define:vars={{ endpoint }}>
+    (() => {
+      const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
+
+      if (!endpoint || localHosts.has(window.location.hostname)) {
+        return;
+      }
+
+      const makeId = () => {
+        if (crypto.randomUUID) {
+          return crypto.randomUUID();
+        }
+
+        return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+      };
+
+      const getBrowserId = () => {
+        const key = "portfolio_view_dedupe_id";
+
+        try {
+          let value = window.localStorage.getItem(key);
+
+          if (!value) {
+            value = makeId();
+            window.localStorage.setItem(key, value);
+          }
+
+          return value;
+        } catch (error) {
+          return makeId();
+        }
+      };
+
+      const body = JSON.stringify({
+        path: window.location.pathname,
+        title: document.title,
+        dedupeId: getBrowserId()
+      });
+
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([body], { type: "text/plain;charset=UTF-8" });
+
+          if (navigator.sendBeacon(endpoint, blob)) {
+            return;
+          }
+        }
+
+        void fetch(endpoint, {
+          method: "POST",
+          mode: "no-cors",
+          keepalive: true,
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
+          body
+        }).catch(() => {});
+      } catch (error) {
+        // Page-view tracking must never affect the website.
+      }
+    })();
+  </script>
+)}
