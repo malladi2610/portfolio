@@ -2,23 +2,23 @@
 
 ## Goal
 
-Replace the temporary CV maintenance state with a small role picker on the homepage. A recruiter chooses the specialization relevant to the vacancy, and the matching PDF opens in the browser's native viewer.
+Replace the temporary CV maintenance state with a dedicated, compact role picker at `/cv/`. A recruiter chooses the specialization relevant to the vacancy, and the matching PDF opens in the browser's native viewer.
 
 The site will not embed or render PDFs itself.
 
 ## Recruiter Flow
 
 1. The recruiter clicks **Download CV** on the homepage.
-2. A native modal dialog opens with the heading **Looking for...**.
-3. The dialog presents four vertical role options:
+2. The browser opens `/cv/` in a new tab.
+3. The new tab shows a small selector with the heading **Looking for...** and four vertical role options:
    - Embedded Software Engineer
    - Software Engineer
    - Robotics Engineer
    - Edge AI Engineer
-4. Selecting a role opens its PDF in a new browser tab.
-5. The dialog closes, and the portfolio remains available in the original tab.
+4. Selecting a role replaces the selector tab with the matching PDF in the browser's native viewer.
+5. The portfolio remains untouched in the original tab.
 
-The dialog can be closed with its close button, the Escape key, or a backdrop click.
+The browser decides whether `target="_blank"` creates a tab or window according to the visitor's settings. The site will not request a sized popup window.
 
 ## CV Mapping
 
@@ -29,46 +29,43 @@ The dialog can be closed with its close button, the Escape key, or a backdrop cl
 | Robotics Engineer | `/CV_Robotics.pdf` |
 | Edge AI Engineer | `/CV_Edge_AI.pdf` |
 
-These PDF URLs are also the direct, shareable specialization links. No separate `/cv/` page or role query-string routing will be added.
+These PDF URLs are also direct, shareable specialization links. The `/cv/` page is the shareable generic role selector; no role query-string routing will be added.
 
 ## Visual Design
 
-The dialog will use the approved command-menu presentation:
+The `/cv/` page will use a compact, PDF-viewer-inspired presentation:
 
-- A narrow vertical panel with a maximum width of approximately 430px.
-- One restrained accent color matching the existing homepage.
-- A document icon beside the heading.
-- Four rows in one cohesive bordered list rather than separate colored cards.
-- A monochrome line icon for each role and an external-link icon at the right.
-- Subtle depth, backdrop blur, hover feedback, and a short opening transition.
-- Border radii no greater than 8px.
-- No role descriptions, multicolor accents, dropdowns, or embedded preview.
+- A neutral dark-gray page similar in tone and density to common native PDF viewers.
+- A narrow selector with a maximum width of approximately 340px.
+- A small **Looking for...** heading above four compact rows.
+- Four rows in one cohesive list rather than separate cards.
+- Monochrome controls, one restrained accent, tight spacing, and subtle hover feedback.
+- Row heights of approximately 44-48px and border radii no greater than 6px.
+- No role descriptions, decorative effects, multicolor accents, dropdowns, or embedded preview.
+- No fake browser toolbar or controls that could be mistaken for browser chrome.
 
-On small screens, the dialog stays within the viewport and role names wrap without overlapping icons or controls.
+On small screens, the selector stays within the viewport and role names wrap without overlapping controls.
 
 ## Implementation
 
-The change stays within the existing Astro homepage and global stylesheet:
+The change uses the existing Astro homepage plus one small static page:
 
-- Replace the maintenance anchor with a real button that opens the dialog.
+- Replace the maintenance anchor with a normal `/cv/` link using `target="_blank"` and `rel="noopener"`.
 - Remove the maintenance status message.
-- Add the native `<dialog>` markup to the homepage.
-- Add minimal client-side behavior for opening, closing, and backdrop clicks.
-- Close the dialog in the original tab after a role link is activated.
-- Use ordinary links with `target="_blank"` and `rel="noopener"` for the four PDFs.
-- Add scoped dialog and role-list styles to the existing global stylesheet.
-- Reuse inline SVG icon styling; add no package dependencies and no new page route.
+- Add `src/pages/cv.astro` for the compact role selector.
+- Use ordinary same-tab links from `/cv/` to the four PDFs so the native viewer replaces the selector tab.
+- Keep selector styling scoped to the new page or to narrowly named global classes.
+- Add no client-side JavaScript, package dependencies, or custom PDF renderer.
 
 The existing contact CTA, topic navigation, typewriter behavior, and pointer effects remain unchanged.
 
 ## Accessibility
 
-- Use a native `<dialog>` with `aria-labelledby`.
-- Use a semantic button to open the dialog and a labeled icon button to close it.
+- Use a semantic homepage link with a descriptive accessible name.
+- Give the `/cv/` page a clear document title and heading.
 - Use semantic links for role choices.
 - Preserve visible keyboard focus styles.
-- Rely on the native dialog for focus management and Escape-key dismissal.
-- Disable the opening transition when reduced motion is requested.
+- Keep all role choices reachable in a logical keyboard order.
 
 ## Failure Behavior
 
@@ -79,10 +76,10 @@ Browser PDF behavior is intentionally delegated to the visitor's platform. Deskt
 ## Verification
 
 - Run the production Astro build successfully.
-- Assert that generated homepage markup contains the dialog, all four role labels, all four PDF paths, and new-tab link attributes.
+- Assert that generated homepage markup contains the `/cv/` link and new-tab attributes.
+- Assert that generated `/cv/` markup contains all four role labels and all four PDF paths.
 - Assert that the maintenance message is absent.
-- Test opening and closing the dialog with pointer and keyboard input.
-- Confirm that role selection closes the dialog in the original tab.
+- Confirm the homepage link opens the selector in a new tab in a standard browser.
 - Test each role link and confirm its mapped PDF is reachable.
 - Check desktop and mobile layouts for clipping, overlap, and readable wrapping.
 - Confirm no browser console errors during the interaction.
@@ -91,6 +88,7 @@ Browser PDF behavior is intentionally delegated to the visitor's platform. Deskt
 
 - Custom PDF rendering or an embedded PDF viewer.
 - A homepage dropdown.
-- A dedicated CV page.
+- An in-page homepage modal.
+- A script-opened or sized popup window.
 - CV analytics or download tracking.
 - Changes to the CV documents themselves.
