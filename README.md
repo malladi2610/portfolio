@@ -25,7 +25,7 @@ Edit `src/config/site.ts`:
 
 - `siteUrl`
 - `contactFormEndpoint` (Formspree URL)
-- `visitorTrackingEndpoint` (Cloudflare Worker visit endpoint)
+- `viewPingUrl` (Google Apps Script Web App URL)
 
 ## Blogging
 
@@ -35,6 +35,6 @@ Use the template in `src/content/blog/TEMPLATE.md`. Instructions are in `src/con
 
 GitHub Actions publishes the site to GitHub Pages. The custom domain is stored in `public/CNAME`.
 
-## Visitor Tracking
+## Page-view Digest
 
-See `docs/cloudflare-visitor-tracking.md` for the Cloudflare Worker + D1 setup used to capture visit pings and query recent page opens.
+See `docs/google-apps-script-visitor-tracking.md` for the Google Sheets page-view log and daily email digest setup.
