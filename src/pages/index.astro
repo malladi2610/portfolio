@@ -9,7 +9,7 @@ const topics = [
 ];
 
 const ctas = [
-  { href: "#cv-maintenance", label: "CV under maintenance", icon: "download" },
+  { href: "/cv/", label: "Download CV", icon: "download", target: "_blank", rel: "noopener" },
   { href: "/contact/", label: "Contact Page", icon: "contact", secondary: true }
 ];
 
@@ -75,6 +75,8 @@ const heroAriaLabel = `${siteConfig.heroGreeting} ${siteConfig.heroIntro}`;
               class:list={["hero-cta", cta.secondary && "hero-cta--secondary"]}
               href={cta.href}
               download={cta.download}
+              target={cta.target}
+              rel={cta.rel}
             >
               <span class="hero-cta__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
@@ -87,9 +89,6 @@ const heroAriaLabel = `${siteConfig.heroGreeting} ${siteConfig.heroIntro}`;
             </a>
           ))}
         </div>
-        <p id="cv-maintenance" class="form-status" role="status">
-          CV downloads are temporarily under maintenance while I prepare updated CVs.
-        </p>
       </div>
     </section>
   </div>
