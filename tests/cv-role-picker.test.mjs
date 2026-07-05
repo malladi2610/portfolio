@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const homeHtml = readFileSync(new URL("../dist/index.html", import.meta.url), "utf8");
+const cvSource = readFileSync(new URL("../src/pages/cv.astro", import.meta.url), "utf8");
 
 test("homepage opens the CV selector in a new tab", () => {
   const cvLink = homeHtml.match(/<a\b[^>]*href="\/cv\/"[^>]*>/)?.[0];
@@ -26,4 +27,8 @@ test("CV selector exposes every specialized PDF", () => {
     assert.ok(cvHtml.includes(label), `missing role label: ${label}`);
     assert.ok(cvHtml.includes(`href="${href}"`), `missing PDF link: ${href}`);
   }
+});
+
+test("CV selector centers its heading", () => {
+  assert.match(cvSource, /\.cv-selector h1\s*{[^}]*text-align:\s*center;/s);
 });
