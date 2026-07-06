@@ -4,6 +4,7 @@ dist/
 .env
 .env.*
 .DS_Store
+.superpowers/
 extras/
 image_creation_codex_rules.md
 

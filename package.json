@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "test:tracking": "npm run build && node --test tests/view-ping.test.mjs tests/apps-script-visitor-digest.test.mjs",
+    "test:cv": "npm run build && node --test tests/cv-role-picker.test.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
