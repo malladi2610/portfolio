@@ -841,6 +841,13 @@ b {
   font-size: 1.3rem;
 }
 
+.post p a {
+  color: #a9c3ff;
+  text-decoration: underline;
+  text-decoration-color: rgba(169, 195, 255, 0.5);
+  text-underline-offset: 0.18em;
+}
+
 .post .result-table {
   width: min(100%, 720px);
   margin: 28px auto;
@@ -931,10 +938,6 @@ b {
   border-collapse: collapse;
   color: var(--text);
   font-variant-numeric: tabular-nums;
-}
-
-.post .result-table--wide table {
-  min-width: 720px;
 }
 
 .post .result-table caption {
