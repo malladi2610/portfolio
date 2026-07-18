@@ -1,5 +1,5 @@
 ---
-title: "EdgeAI hackathon project"
+title: "From Light to Location: Visible Light Positioning on a Raspberry Pi Pico"
 description: ""
 pubDate: 2026-06-18
 updatedDate: 2026-06-18
@@ -133,7 +133,7 @@ The complete pipeline was:
   <span>Predicted receiver position</span>
 </div>
 
-I first fitted a separate [Lambertian light-propagation model](https://en.wikipedia.org/wiki/Lambert%27s_cosine_law) for each of the nine LEDs using the clean training fingerprints. This provided a continuous approximation of the RSS value expected from every LED at a given receiver position.
+I first fitted a separate light-propagation model for each of the nine LEDs using the clean training fingerprints, based on [Lambert's cosine law](https://en.wikipedia.org/wiki/Lambert%27s_cosine_law). The hackathon formulation extended the basic cosine law with the LED's Lambertian order, distance-dependent propagation loss, the receiver incidence angle, and a field-of-view cutoff. Together, these terms provided a continuous approximation of the RSS value expected from every LED at a given receiver position.
 
 At startup, the Pico used these models to generate a quantized fingerprint table over the room with a grid spacing of 4 cm. The fingerprints were stored as `uint16` values, keeping the table at approximately 86 KB of RAM.
 
