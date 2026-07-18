@@ -841,6 +841,13 @@ b {
   font-size: 1.3rem;
 }
 
+.post p a {
+  color: #a9c3ff;
+  text-decoration: underline;
+  text-decoration-color: rgba(169, 195, 255, 0.5);
+  text-underline-offset: 0.18em;
+}
+
 .post .result-table {
   width: min(100%, 720px);
   margin: 28px auto;
@@ -902,11 +909,8 @@ b {
   gap: 14px;
   width: min(100%, 640px);
   margin: 26px auto;
-  padding: 18px 20px;
+  padding: 4px 0;
   overflow-x: auto;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: rgba(127, 166, 255, 0.035);
   color: var(--text-strong);
   text-align: center;
 }
@@ -934,10 +938,6 @@ b {
   border-collapse: collapse;
   color: var(--text);
   font-variant-numeric: tabular-nums;
-}
-
-.post .result-table--wide table {
-  min-width: 720px;
 }
 
 .post .result-table caption {
@@ -1019,7 +1019,7 @@ b {
 
   .post .equation-set {
     margin: 22px auto;
-    padding: 16px 10px;
+    padding: 2px 0;
   }
 
   .post .result-table th,

@@ -23,7 +23,7 @@ With the challenge and its constraints in place, let’s start with the clean-da
 
 Task 1 used the clean 3 × 3 LED configuration. The model received nine RSS values and had to predict the continuous two-dimensional position of the receiver. The provided baseline was a small two-layer MLP:
 
-<div class="architecture-line" role="img" aria-label="Baseline model architecture: 9 inputs, two hidden layers of 32 neurons, and 2 outputs"><code>9 → 32 → 32 → 2</code></div>
+<div class="architecture-line" role="img" aria-label="Baseline model architecture: 9 inputs, two hidden layers of 32 neurons, and 2 outputs"><code>Input (9) → 32 → 32 → Output (2)</code></div>
 
 The baseline used:
 
@@ -37,18 +37,18 @@ The baseline used:
 
 The first thing I did was look for low-hanging improvements in the training pipeline before experimenting with more complex architectures. The most obvious place to start was the RSS normalization. The baseline divided all nine channels by one global maximum, even though every LED had a different intensity distribution. I replaced this with per-channel standardization using the mean and standard deviation of each LED from the training data. This gave the model better-conditioned inputs and reduced the chance of stronger channels disproportionately influencing the training process.
 
-I then made a few more changes to the model and training setup:
+The next step was to refine the model and training setup:
 
-- **Larger MLP:** I increased the network to `9 → 128 → 64 → 2`, giving it more capacity to learn the nonlinear relationship between the nine RSS measurements and the receiver position.
-- **Linear output layer:** I removed the final sigmoid. The targets were still normalized as in the baseline, but the model was no longer forced through a saturating output function near the boundaries.
-- **Loss function check:** I compared MSE with Smooth L1 using the same `128 → 64` architecture and training setup. Smooth L1 reduced the mean error from 0.897 cm to 0.883 cm in this controlled comparison. The improvement was only 0.014 cm, so I treated the loss function as a minor refinement rather than a main source of the final accuracy gain.
-- **Longer deterministic training:** I trained with AdamW for 220 epochs, used deterministic seeds and shuffled mini-batches, and restored the checkpoint with the lowest validation positioning error instead of simply using the final epoch.
+- **Larger MLP:** The network was expanded to `9 → 128 → 64 → 2`, providing more capacity to learn the nonlinear relationship between the nine RSS measurements and the receiver position.
+- **Linear output layer:** The final sigmoid was removed. The targets remained normalized as in the baseline, but the model was no longer forced through a saturating output function near the boundaries.
+- **Loss function check:** MSE and Smooth L1 were compared using the same `128 → 64` architecture and training setup. Smooth L1 reduced the mean error from 0.897 cm to 0.883 cm in this controlled comparison. Since the improvement was only 0.014 cm, the loss function was treated as a minor refinement rather than a main source of the final accuracy gain.
+- **Longer deterministic training:** Training used AdamW for 220 epochs, deterministic seeds, and shuffled mini-batches. The checkpoint with the lowest validation positioning error was restored instead of simply using the final epoch.
 
 ## Exploring the architecture
 
 Once the improved training pipeline was working, I wanted to answer two questions. Would a larger MLP continue improving accuracy, and could a CNN take advantage of the physical 3 × 3 arrangement of the LEDs?
 
-To test whether the spatial arrangement could benefit from convolutional feature extraction, I compared a small CNN with 8 filters against a wider version with 16 filters. These were representative TinyML configurations rather than the result of an exhaustive CNN search. Doubling the number of filters let me check whether additional CNN capacity improved accuracy while keeping both models small enough for the Pico.
+To test whether the spatial arrangement could benefit from convolutional feature extraction, I compared a small CNN with 8 filters against a wider version with 16 filters. Doubling the number of filters let me check whether additional CNN capacity improved accuracy while keeping both models small enough for the Pico.
 
 Alongside these CNNs, I evaluated progressively larger MLPs and a hybrid model that combined convolutional features with the original RSS vector. The figure below shows the trade-off between public validation error and TFLite model size. The dashed line represents the Pareto front, where improving accuracy requires accepting a larger model.
 
@@ -133,7 +133,7 @@ The complete pipeline was:
   <span>Predicted receiver position</span>
 </div>
 
-I first fitted a separate Lambertian light-propagation model for each of the nine LEDs using the clean training fingerprints. This provided a continuous approximation of the RSS value expected from every LED at a given receiver position.
+I first fitted a separate [Lambertian light-propagation model](https://en.wikipedia.org/wiki/Lambert%27s_cosine_law) for each of the nine LEDs using the clean training fingerprints. This provided a continuous approximation of the RSS value expected from every LED at a given receiver position.
 
 At startup, the Pico used these models to generate a quantized fingerprint table over the room with a grid spacing of 4 cm. The fingerprints were stored as `uint16` values, keeping the table at approximately 86 KB of RAM.
 
@@ -147,7 +147,7 @@ The corrected nine-channel vector was then standardized and passed to Model A wi
 
 ## Final Task 2 result
 
-The host-side simulator reproduced the complete firmware preprocessing pipeline over the first 5,000 public raw-validation samples:
+Across the first 5,000 public raw-validation samples:
 
 <div class="result-table" role="region" aria-label="Task 2 raw input and physics-based repair comparison" tabindex="0">
   <table>
@@ -174,7 +174,7 @@ The host-side simulator reproduced the complete firmware preprocessing pipeline 
   </table>
 </div>
 
-The denoiser reduced the mean positioning error by approximately 48%. The improvement came from restoring the input distribution before inference rather than making the neural network responsible for correcting heavily corrupted measurements.
+The denoiser reduced the mean positioning error by approximately 48%. Because retraining Model A on the noisy measurements was not allowed, the improvement had to come from preprocessing. The physics-based repair moved each corrupted RSS vector closer to the clean input distribution expected by the frozen model.
 
 # Task 3: Learning from sparse measurements with physics
 
@@ -206,7 +206,7 @@ The real 703 fingerprints were repeated 20 times and mixed into the synthetic da
 
 The expanded dataset was used to train a compact MLP:
 
-<div class="architecture-line" role="img" aria-label="Task 3 model architecture: 36 inputs, two hidden layers of 64 neurons, and 2 outputs"><code>36 → 64 → 64 → 2</code></div>
+<div class="architecture-line" role="img" aria-label="Task 3 model architecture: 36 inputs, two hidden layers of 64 neurons, and 2 outputs"><code>Input (36) → 64 → 64 → Output (2)</code></div>
 
 All 36 RSS channels were standardized independently before training. The model was trained for 60 epochs using Adam, MSE loss, shuffled mini-batches, and a cosine learning-rate schedule.
 
@@ -216,7 +216,7 @@ Although Model B received four times as many input channels as the Task 1 model,
 
 I exported both a float model and an int8 candidate and evaluated them on the 78 real sparse validation fingerprints:
 
-<div class="result-table result-table--wide" role="region" aria-label="Task 3 float and int8 model comparison" tabindex="0">
+<div class="result-table" role="region" aria-label="Task 3 float and int8 model comparison" tabindex="0">
   <table>
     <caption>Task 3 float and int8 model comparison</caption>
     <thead>
@@ -224,7 +224,6 @@ I exported both a float model and an int8 candidate and evaluated them on the 78
         <th scope="col">Variant</th>
         <th scope="col">TFLite size</th>
         <th scope="col">Mean error</th>
-        <th scope="col">Median error</th>
         <th scope="col">p95 error</th>
       </tr>
     </thead>
@@ -233,14 +232,12 @@ I exported both a float model and an int8 candidate and evaluated them on the 78
         <th scope="row">Float</th>
         <td>29,332 bytes</td>
         <td>0.828 cm</td>
-        <td>0.781 cm</td>
         <td>1.488 cm</td>
       </tr>
       <tr>
         <th scope="row">Int8 candidate</th>
         <td>12,960 bytes</td>
         <td>1.042 cm</td>
-        <td>1.024 cm</td>
         <td>1.952 cm</td>
       </tr>
     </tbody>
@@ -248,8 +245,6 @@ I exported both a float model and an int8 candidate and evaluated them on the 78
 </div>
 
 Quantization reduced the model size by approximately 56%, but increased the mean positioning error by 0.214 cm. Since positioning accuracy carried the greatest weight in Task 3, I retained the non-quantized float model for the final submission.
-
-The main improvement in Task 3 came from changing the training data rather than making the neural network larger. Physics provided continuous coverage between the sparse measurements, while the compact MLP learned a function that could be deployed directly on the Pico.
 
 # Task 4: Adapting to LED aging online
 
@@ -369,11 +364,6 @@ The complete pipeline was evaluated over all 4,685 public validation samples usi
         <td>1.369 cm</td>
       </tr>
       <tr>
-        <th scope="row">Median positioning error</th>
-        <td>6.607 cm</td>
-        <td>1.201 cm</td>
-      </tr>
-      <tr>
         <th scope="row">p95 positioning error</th>
         <td>17.008 cm</td>
         <td>2.921 cm</td>
@@ -388,8 +378,8 @@ The online calibration reduced the overall mean positioning error by approximate
 
 # Conclusion
 
-Looking back, the biggest lesson from the hackathon was that improving an edge AI system does not always mean building a larger neural network. Task 1 benefited from better preprocessing, training, and architecture choices. Tasks 2 and 4 kept that model frozen and handled changing input conditions around it, while Task 3 used the physics of visible light to create the dense training data that was otherwise missing.
+Looking back, the biggest lesson from the hackathon was that a better edge AI system is not defined by the AI model alone, but by the complete system built around it. Task 1 benefited from better preprocessing, training, and architecture choices. Tasks 2 and 4 kept that model frozen and handled changing input conditions around it, while Task 3 used the physics of visible light to create the dense training data that was otherwise missing.
 
 Across all four tasks, the most effective approach was to combine a compact neural network with knowledge of the physical system. The neural networks learned the relationship between RSS fingerprints and position, while the Lambertian model helped repair corrupted measurements, interpolate sparse data, and adapt to aging LEDs. This combination allowed the final solutions to remain practical for the Raspberry Pi Pico without treating the model as the answer to every problem.
 
-I worked on the challenge as part of Team “Glitch Mob” with Blendi A., and we finished with the second prize. More than the final ranking, the rewarding part was seeing the complete pipeline move from data analysis and model training to firmware running on a microcontroller.
+Together, these optimizations earned our team second place in the hackathon. More than the final ranking, the rewarding part was seeing the complete pipeline move from data analysis and model training to firmware running on a microcontroller.
