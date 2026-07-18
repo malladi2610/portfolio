@@ -902,11 +902,8 @@ b {
   gap: 14px;
   width: min(100%, 640px);
   margin: 26px auto;
-  padding: 18px 20px;
+  padding: 4px 0;
   overflow-x: auto;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: rgba(127, 166, 255, 0.035);
   color: var(--text-strong);
   text-align: center;
 }
@@ -1019,7 +1016,7 @@ b {
 
   .post .equation-set {
     margin: 22px auto;
-    padding: 16px 10px;
+    padding: 2px 0;
   }
 
   .post .result-table th,
