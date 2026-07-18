@@ -23,7 +23,7 @@ With the challenge and its constraints in place, let’s start with the clean-da
 
 Task 1 used the clean 3 × 3 LED configuration. The model received nine RSS values and had to predict the continuous two-dimensional position of the receiver. The provided baseline was a small two-layer MLP:
 
-<div class="architecture-line" role="img" aria-label="Baseline model architecture: 9 inputs, two hidden layers of 32 neurons, and 2 outputs"><code>9 → 32 → 32 → 2</code></div>
+<div class="architecture-line" role="img" aria-label="Baseline model architecture: 9 inputs, two hidden layers of 32 neurons, and 2 outputs"><code>Input (9) → 32 → 32 → Output (2)</code></div>
 
 The baseline used:
 
@@ -206,7 +206,7 @@ The real 703 fingerprints were repeated 20 times and mixed into the synthetic da
 
 The expanded dataset was used to train a compact MLP:
 
-<div class="architecture-line" role="img" aria-label="Task 3 model architecture: 36 inputs, two hidden layers of 64 neurons, and 2 outputs"><code>36 → 64 → 64 → 2</code></div>
+<div class="architecture-line" role="img" aria-label="Task 3 model architecture: 36 inputs, two hidden layers of 64 neurons, and 2 outputs"><code>Input (36) → 64 → 64 → Output (2)</code></div>
 
 All 36 RSS channels were standardized independently before training. The model was trained for 60 epochs using Adam, MSE loss, shuffled mini-batches, and a cosine learning-rate schedule.
 
