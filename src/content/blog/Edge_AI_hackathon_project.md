@@ -23,15 +23,7 @@ With the challenge and its constraints in place, let’s start with the clean-da
 
 Task 1 used the clean 3 × 3 LED configuration. The model received nine RSS values and had to predict the continuous two-dimensional position of the receiver. The provided baseline was a small two-layer MLP:
 
-<div class="model-architecture" role="img" aria-label="Baseline model architecture with 9 inputs, two hidden layers of 32 neurons, and 2 outputs">
-  <span class="model-architecture__node"><small>Input</small><strong>9</strong></span>
-  <span class="model-architecture__arrow" aria-hidden="true">→</span>
-  <span class="model-architecture__node"><small>Hidden</small><strong>32</strong></span>
-  <span class="model-architecture__arrow" aria-hidden="true">→</span>
-  <span class="model-architecture__node"><small>Hidden</small><strong>32</strong></span>
-  <span class="model-architecture__arrow" aria-hidden="true">→</span>
-  <span class="model-architecture__node"><small>Output</small><strong>2</strong></span>
-</div>
+<div class="architecture-line" role="img" aria-label="Baseline model architecture: 9 inputs, two hidden layers of 32 neurons, and 2 outputs"><code>9 → 32 → 32 → 2</code></div>
 
 The baseline used:
 
@@ -129,16 +121,16 @@ Instead of asking Model A to interpret measurements that no longer resembled its
 
 The complete pipeline was:
 
-<div class="process-flow" role="img" aria-label="Task 2 pipeline from raw RSS measurements through physics-based matching and repair to the frozen Task 1 model and predicted receiver position">
-  <div class="process-flow__step"><span>1</span>Raw RSS measurements</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>2</span>Robust physics-based position matching</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>3</span>Dropout and outlier repair</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>4</span>Frozen Task 1 model</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step process-flow__step--result"><span>5</span>Predicted receiver position</div>
+<div class="pipeline-flow" role="img" aria-label="Task 2 pipeline from raw RSS measurements through physics-based matching and repair to the frozen Task 1 model and predicted receiver position">
+  <span>Raw RSS measurements</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Robust physics-based position matching</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Dropout and outlier repair</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Frozen Task 1 model</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Predicted receiver position</span>
 </div>
 
 I first fitted a separate Lambertian light-propagation model for each of the nine LEDs using the clean training fingerprints. This provided a continuous approximation of the RSS value expected from every LED at a given receiver position.
@@ -198,31 +190,23 @@ I then sampled 250,000 random continuous positions and generated their fingerpri
 
 The real 703 fingerprints were repeated 20 times and mixed into the synthetic dataset. This anchored the network to actual measurements instead of allowing the approximated physics model to dominate the training data. The resulting dataset contained 264,060 samples.
 
-<div class="process-flow" role="img" aria-label="Task 3 data generation pipeline from 703 sparse real fingerprints to a combined synthetic and repeated real training dataset">
-  <div class="process-flow__step"><span>1</span>703 sparse real fingerprints</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>2</span>Fit 36 Lambertian LED models</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>3</span>Generate 250,000 continuous fingerprints</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>4</span>Add sensor noise and detection thresholds</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step process-flow__step--result"><span>5</span>Combine synthetic and repeated real samples</div>
+<div class="pipeline-flow" role="img" aria-label="Task 3 data generation pipeline from 703 sparse real fingerprints to a combined synthetic and repeated real training dataset">
+  <span>703 sparse real fingerprints</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Fit 36 Lambertian LED models</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Generate 250,000 continuous fingerprints</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Add sensor noise and detection thresholds</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Combine synthetic and repeated real samples</span>
 </div>
 
 ## Designing Model B
 
 The expanded dataset was used to train a compact MLP:
 
-<div class="model-architecture" role="img" aria-label="Task 3 model architecture with 36 inputs, two hidden layers of 64 neurons, and 2 outputs">
-  <span class="model-architecture__node"><small>Input</small><strong>36</strong></span>
-  <span class="model-architecture__arrow" aria-hidden="true">→</span>
-  <span class="model-architecture__node"><small>Hidden</small><strong>64</strong></span>
-  <span class="model-architecture__arrow" aria-hidden="true">→</span>
-  <span class="model-architecture__node"><small>Hidden</small><strong>64</strong></span>
-  <span class="model-architecture__arrow" aria-hidden="true">→</span>
-  <span class="model-architecture__node"><small>Output</small><strong>2</strong></span>
-</div>
+<div class="architecture-line" role="img" aria-label="Task 3 model architecture: 36 inputs, two hidden layers of 64 neurons, and 2 outputs"><code>36 → 64 → 64 → 2</code></div>
 
 All 36 RSS channels were standardized independently before training. The model was trained for 60 epochs using Adam, MSE loss, shuffled mini-batches, and a cosine learning-rate schedule.
 
@@ -273,18 +257,33 @@ Task 4 returned to the nine-LED configuration and the frozen Model A from Task 1
 
 The aging simulation assigned each LED its own decay rate. Its brightness at operating time `t` was modelled as:
 
-<div class="formula-card" role="group" aria-label="LED aging equations">
-  <div class="formula-card__row">
-    <span class="formula-card__label">LED decay</span>
-    <span class="formula-card__equation">RSS<sub>j</sub>(t) = RSS<sub>j</sub>(0) × exp(−k<sub>j</sub> × t)</span>
-  </div>
-  <div class="formula-card__row">
-    <span class="formula-card__label">Decay rate</span>
-    <span class="formula-card__equation">k<sub>j</sub> = −ln(0.9) / T90<sub>j</sub></span>
-  </div>
+<div class="equation-set" role="group" aria-label="LED aging equations">
+  <math display="block" aria-label="RSS sub j at time t equals RSS sub j at time zero multiplied by e to the power of negative k sub j t">
+    <mrow>
+      <msub><mi>RSS</mi><mi>j</mi></msub>
+      <mo>(</mo><mi>t</mi><mo>)</mo>
+      <mo>=</mo>
+      <msub><mi>RSS</mi><mi>j</mi></msub>
+      <mo>(</mo><mn>0</mn><mo>)</mo>
+      <msup>
+        <mi>e</mi>
+        <mrow><mo>−</mo><msub><mi>k</mi><mi>j</mi></msub><mi>t</mi></mrow>
+      </msup>
+    </mrow>
+  </math>
+  <math display="block" aria-label="k sub j equals negative natural logarithm of 0.9 divided by T sub 90 comma j">
+    <mrow>
+      <msub><mi>k</mi><mi>j</mi></msub>
+      <mo>=</mo>
+      <mfrac>
+        <mrow><mo>−</mo><mi>ln</mi><mo>(</mo><mn>0.9</mn><mo>)</mo></mrow>
+        <msub><mi>T</mi><mrow><mn>90</mn><mo>,</mo><mi>j</mi></mrow></msub>
+      </mfrac>
+    </mrow>
+  </math>
 </div>
 
-Here, `T90_j` is the time at which LED `j` retains 90% of its original brightness. Because every LED had a different `T90`, the nine channels did not fade by the same amount. Model A had been trained on the original brightness distribution, so this uneven decay created an increasing mismatch between its training data and the measurements it received.
+Here, T<sub>90,j</sub> is the time at which LED <i>j</i> retains 90% of its original brightness. Because every LED had a different T<sub>90</sub>, the nine channels did not fade by the same amount. Model A had been trained on the original brightness distribution, so this uneven decay created an increasing mismatch between its training data and the measurements it received.
 
 ## Tracking one gain per LED
 
@@ -294,31 +293,53 @@ The corrected fingerprint was then robustly matched against the same Lambertian 
 
 The complete loop was:
 
-<div class="process-flow" role="img" aria-label="Task 4 online calibration loop from aged RSS measurements to the updated per-LED gain estimates">
-  <div class="process-flow__step"><span>1</span>Aged RSS measurements</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>2</span>Divide by the current per-LED gains</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>3</span>Match against the physics fingerprint table</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>4</span>Repair flicker and large outliers</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step"><span>5</span>Run the frozen Task 1 model</div>
-  <div class="process-flow__arrow" aria-hidden="true">↓</div>
-  <div class="process-flow__step process-flow__step--result"><span>6</span>Update the gain estimates for the next sample</div>
+<div class="pipeline-flow" role="img" aria-label="Task 4 online calibration loop from aged RSS measurements to the updated per-LED gain estimates">
+  <span>Aged RSS measurements</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Divide by the current per-LED gains</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Match against the physics fingerprint table</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Repair flicker and large outliers</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Run the frozen Task 1 model</span>
+  <span class="pipeline-flow__arrow" aria-hidden="true">↓</span>
+  <span>Update the gain estimates for the next sample</span>
 </div>
 
 For a nonzero channel with a sufficiently strong expected value, the firmware calculated an observed-to-expected ratio and updated the gain using a bounded exponential moving average:
 
-<div class="formula-card" role="group" aria-label="Online per-LED gain calibration equations">
-  <div class="formula-card__row">
-    <span class="formula-card__label">Observed ratio</span>
-    <span class="formula-card__equation">ratio<sub>j</sub> = clamp(raw<sub>j</sub> / expected<sub>j</sub>, 0.50, 1.05)</span>
-  </div>
-  <div class="formula-card__row">
-    <span class="formula-card__label">Gain update</span>
-    <span class="formula-card__equation">gain<sub>j</sub> = clamp(gain<sub>j</sub> + 0.06 × (ratio<sub>j</sub> − gain<sub>j</sub>), 0.50, 1.05)</span>
-  </div>
+<div class="equation-set" role="group" aria-label="Online per-LED gain calibration equations">
+  <math display="block" aria-label="r sub j equals the observed RSS sub j divided by the expected RSS sub j, clamped between 0.50 and 1.05">
+    <mrow>
+      <msub><mi>r</mi><mi>j</mi></msub>
+      <mo>=</mo>
+      <mi>clamp</mi>
+      <mo>(</mo>
+      <mfrac>
+        <msub><mi>RSS</mi><mi>j</mi></msub>
+        <mover accent="true"><msub><mi>RSS</mi><mi>j</mi></msub><mo>^</mo></mover>
+      </mfrac>
+      <mo>,</mo><mn>0.50</mn><mo>,</mo><mn>1.05</mn>
+      <mo>)</mo>
+    </mrow>
+  </math>
+  <math display="block" aria-label="g sub j is updated using a bounded exponential moving average with alpha equal to 0.06">
+    <mrow>
+      <msub><mi>g</mi><mi>j</mi></msub>
+      <mo>←</mo>
+      <mi>clamp</mi>
+      <mo>(</mo>
+      <msub><mi>g</mi><mi>j</mi></msub>
+      <mo>+</mo>
+      <mi>α</mi>
+      <mo>(</mo><msub><mi>r</mi><mi>j</mi></msub><mo>−</mo><msub><mi>g</mi><mi>j</mi></msub><mo>)</mo>
+      <mo>,</mo><mn>0.50</mn><mo>,</mo><mn>1.05</mn>
+      <mo>)</mo>
+      <mo>,</mo>
+      <mi>α</mi><mo>=</mo><mn>0.06</mn>
+    </mrow>
+  </math>
 </div>
 
 The bounds prevented one unusual measurement from producing an unrealistic gain, while the update rate of `0.06` allowed the estimate to follow gradual aging without reacting too strongly to individual samples. After an episode change, the calibration generally settled around the new brightness level within roughly 50 samples.
