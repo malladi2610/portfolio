@@ -23,9 +23,15 @@ With the challenge and its constraints in place, let’s start with the clean-da
 
 Task 1 used the clean 3 × 3 LED configuration. The model received nine RSS values and had to predict the continuous two-dimensional position of the receiver. The provided baseline was a small two-layer MLP:
 
-```text
-9 → 32 → 32 → 2
-```
+<div class="model-architecture" role="img" aria-label="Baseline model architecture with 9 inputs, two hidden layers of 32 neurons, and 2 outputs">
+  <span class="model-architecture__node"><small>Input</small><strong>9</strong></span>
+  <span class="model-architecture__arrow" aria-hidden="true">→</span>
+  <span class="model-architecture__node"><small>Hidden</small><strong>32</strong></span>
+  <span class="model-architecture__arrow" aria-hidden="true">→</span>
+  <span class="model-architecture__node"><small>Hidden</small><strong>32</strong></span>
+  <span class="model-architecture__arrow" aria-hidden="true">→</span>
+  <span class="model-architecture__node"><small>Output</small><strong>2</strong></span>
+</div>
 
 The baseline used:
 
@@ -66,12 +72,40 @@ The `128 → 64` MLP sat near the knee of the Pareto front. Its final run reache
 
 Mean positioning error is the average Euclidean distance between the predicted and true receiver positions, measured in centimetres. Lower values indicate better positioning accuracy.
 
-| Metric | Baseline | Final model |
-|---|---:|---:|
-| Architecture | `9 → 32 → 32 → 2` | `9 → 128 → 64 → 2` |
-| Mean positioning error | 5.86 cm | 0.833 cm |
-| TFLite model size | 8.7 KB | 41.0 KB |
-| Pico inference latency | 2.13 ms | 16.54 ms |
+<div class="result-table" role="region" aria-label="Task 1 baseline and final model comparison" tabindex="0">
+  <table>
+    <caption>Task 1 baseline and final model comparison</caption>
+    <thead>
+      <tr>
+        <th scope="col">Metric</th>
+        <th scope="col">Baseline</th>
+        <th scope="col">Final model</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Architecture</th>
+        <td><code>9 → 32 → 32 → 2</code></td>
+        <td><code>9 → 128 → 64 → 2</code></td>
+      </tr>
+      <tr>
+        <th scope="row">Mean positioning error</th>
+        <td>5.86 cm</td>
+        <td>0.833 cm</td>
+      </tr>
+      <tr>
+        <th scope="row">TFLite model size</th>
+        <td>8.7 KB</td>
+        <td>41.0 KB</td>
+      </tr>
+      <tr>
+        <th scope="row">Pico inference latency</th>
+        <td>2.13 ms</td>
+        <td>16.54 ms</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 The final model reduced the mean positioning error by approximately 85.8%. It was larger and slower than the baseline, but accuracy carried the highest weight in Task 1, making this a trade-off I was comfortable with.
 
@@ -95,17 +129,17 @@ Instead of asking Model A to interpret measurements that no longer resembled its
 
 The complete pipeline was:
 
-```text
-Raw RSS measurements
-        ↓
-Robust physics-based position matching
-        ↓
-Dropout and outlier repair
-        ↓
-Frozen Task 1 model
-        ↓
-Predicted receiver position
-```
+<div class="process-flow" role="img" aria-label="Task 2 pipeline from raw RSS measurements through physics-based matching and repair to the frozen Task 1 model and predicted receiver position">
+  <div class="process-flow__step"><span>1</span>Raw RSS measurements</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>2</span>Robust physics-based position matching</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>3</span>Dropout and outlier repair</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>4</span>Frozen Task 1 model</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step process-flow__step--result"><span>5</span>Predicted receiver position</div>
+</div>
 
 I first fitted a separate Lambertian light-propagation model for each of the nine LEDs using the clean training fingerprints. This provided a continuous approximation of the RSS value expected from every LED at a given receiver position.
 
@@ -123,10 +157,30 @@ The corrected nine-channel vector was then standardized and passed to Model A wi
 
 The host-side simulator reproduced the complete firmware preprocessing pipeline over the first 5,000 public raw-validation samples:
 
-| Metric | Raw input | Physics-based repair |
-|---|---:|---:|
-| Mean positioning error | 15.14 cm | 7.85 cm |
-| p95 positioning error | 60.02 cm | 20.34 cm |
+<div class="result-table" role="region" aria-label="Task 2 raw input and physics-based repair comparison" tabindex="0">
+  <table>
+    <caption>Task 2 raw input and physics-based repair comparison</caption>
+    <thead>
+      <tr>
+        <th scope="col">Metric</th>
+        <th scope="col">Raw input</th>
+        <th scope="col">Physics-based repair</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Mean positioning error</th>
+        <td>15.14 cm</td>
+        <td>7.85 cm</td>
+      </tr>
+      <tr>
+        <th scope="row">p95 positioning error</th>
+        <td>60.02 cm</td>
+        <td>20.34 cm</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 The denoiser reduced the mean positioning error by approximately 48%. The improvement came from restoring the input distribution before inference rather than making the neural network responsible for correcting heavily corrupted measurements.
 
@@ -144,25 +198,31 @@ I then sampled 250,000 random continuous positions and generated their fingerpri
 
 The real 703 fingerprints were repeated 20 times and mixed into the synthetic dataset. This anchored the network to actual measurements instead of allowing the approximated physics model to dominate the training data. The resulting dataset contained 264,060 samples.
 
-```text
-703 sparse real fingerprints
-             ↓
-Fit 36 Lambertian LED models
-             ↓
-Generate 250,000 continuous fingerprints
-             ↓
-Add sensor noise and detection thresholds
-             ↓
-Combine synthetic and repeated real samples
-```
+<div class="process-flow" role="img" aria-label="Task 3 data generation pipeline from 703 sparse real fingerprints to a combined synthetic and repeated real training dataset">
+  <div class="process-flow__step"><span>1</span>703 sparse real fingerprints</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>2</span>Fit 36 Lambertian LED models</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>3</span>Generate 250,000 continuous fingerprints</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>4</span>Add sensor noise and detection thresholds</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step process-flow__step--result"><span>5</span>Combine synthetic and repeated real samples</div>
+</div>
 
 ## Designing Model B
 
 The expanded dataset was used to train a compact MLP:
 
-```text
-36 → 64 → 64 → 2
-```
+<div class="model-architecture" role="img" aria-label="Task 3 model architecture with 36 inputs, two hidden layers of 64 neurons, and 2 outputs">
+  <span class="model-architecture__node"><small>Input</small><strong>36</strong></span>
+  <span class="model-architecture__arrow" aria-hidden="true">→</span>
+  <span class="model-architecture__node"><small>Hidden</small><strong>64</strong></span>
+  <span class="model-architecture__arrow" aria-hidden="true">→</span>
+  <span class="model-architecture__node"><small>Hidden</small><strong>64</strong></span>
+  <span class="model-architecture__arrow" aria-hidden="true">→</span>
+  <span class="model-architecture__node"><small>Output</small><strong>2</strong></span>
+</div>
 
 All 36 RSS channels were standardized independently before training. The model was trained for 60 epochs using Adam, MSE loss, shuffled mini-batches, and a cosine learning-rate schedule.
 
@@ -172,10 +232,36 @@ Although Model B received four times as many input channels as the Task 1 model,
 
 I exported both a float model and an int8 candidate and evaluated them on the 78 real sparse validation fingerprints:
 
-| Variant | TFLite size | Mean error | Median error | p95 error |
-|---|---:|---:|---:|---:|
-| Float | 29,332 bytes | 0.828 cm | 0.781 cm | 1.488 cm |
-| Int8 candidate | 12,960 bytes | 1.042 cm | 1.024 cm | 1.952 cm |
+<div class="result-table result-table--wide" role="region" aria-label="Task 3 float and int8 model comparison" tabindex="0">
+  <table>
+    <caption>Task 3 float and int8 model comparison</caption>
+    <thead>
+      <tr>
+        <th scope="col">Variant</th>
+        <th scope="col">TFLite size</th>
+        <th scope="col">Mean error</th>
+        <th scope="col">Median error</th>
+        <th scope="col">p95 error</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Float</th>
+        <td>29,332 bytes</td>
+        <td>0.828 cm</td>
+        <td>0.781 cm</td>
+        <td>1.488 cm</td>
+      </tr>
+      <tr>
+        <th scope="row">Int8 candidate</th>
+        <td>12,960 bytes</td>
+        <td>1.042 cm</td>
+        <td>1.024 cm</td>
+        <td>1.952 cm</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Quantization reduced the model size by approximately 56%, but increased the mean positioning error by 0.214 cm. Since positioning accuracy carried the greatest weight in Task 3, I retained the non-quantized float model for the final submission.
 
@@ -187,10 +273,16 @@ Task 4 returned to the nine-LED configuration and the frozen Model A from Task 1
 
 The aging simulation assigned each LED its own decay rate. Its brightness at operating time `t` was modelled as:
 
-```text
-RSS_j(t) = RSS_j(0) × exp(-k_j × t)
-k_j = -ln(0.9) / T90_j
-```
+<div class="formula-card" role="group" aria-label="LED aging equations">
+  <div class="formula-card__row">
+    <span class="formula-card__label">LED decay</span>
+    <span class="formula-card__equation">RSS<sub>j</sub>(t) = RSS<sub>j</sub>(0) × exp(−k<sub>j</sub> × t)</span>
+  </div>
+  <div class="formula-card__row">
+    <span class="formula-card__label">Decay rate</span>
+    <span class="formula-card__equation">k<sub>j</sub> = −ln(0.9) / T90<sub>j</sub></span>
+  </div>
+</div>
 
 Here, `T90_j` is the time at which LED `j` retains 90% of its original brightness. Because every LED had a different `T90`, the nine channels did not fade by the same amount. Model A had been trained on the original brightness distribution, so this uneven decay created an increasing mismatch between its training data and the measurements it received.
 
@@ -202,26 +294,32 @@ The corrected fingerprint was then robustly matched against the same Lambertian 
 
 The complete loop was:
 
-```text
-Aged RSS measurements
-          ↓
-Divide by the current per-LED gains
-          ↓
-Match against the physics fingerprint table
-          ↓
-Repair flicker and large outliers
-          ↓
-Run the frozen Task 1 model
-          ↓
-Update the gain estimates for the next sample
-```
+<div class="process-flow" role="img" aria-label="Task 4 online calibration loop from aged RSS measurements to the updated per-LED gain estimates">
+  <div class="process-flow__step"><span>1</span>Aged RSS measurements</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>2</span>Divide by the current per-LED gains</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>3</span>Match against the physics fingerprint table</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>4</span>Repair flicker and large outliers</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step"><span>5</span>Run the frozen Task 1 model</div>
+  <div class="process-flow__arrow" aria-hidden="true">↓</div>
+  <div class="process-flow__step process-flow__step--result"><span>6</span>Update the gain estimates for the next sample</div>
+</div>
 
 For a nonzero channel with a sufficiently strong expected value, the firmware calculated an observed-to-expected ratio and updated the gain using a bounded exponential moving average:
 
-```text
-ratio_j = clamp(raw_j / expected_j, 0.50, 1.05)
-gain_j  = clamp(gain_j + 0.06 × (ratio_j - gain_j), 0.50, 1.05)
-```
+<div class="formula-card" role="group" aria-label="Online per-LED gain calibration equations">
+  <div class="formula-card__row">
+    <span class="formula-card__label">Observed ratio</span>
+    <span class="formula-card__equation">ratio<sub>j</sub> = clamp(raw<sub>j</sub> / expected<sub>j</sub>, 0.50, 1.05)</span>
+  </div>
+  <div class="formula-card__row">
+    <span class="formula-card__label">Gain update</span>
+    <span class="formula-card__equation">gain<sub>j</sub> = clamp(gain<sub>j</sub> + 0.06 × (ratio<sub>j</sub> − gain<sub>j</sub>), 0.50, 1.05)</span>
+  </div>
+</div>
 
 The bounds prevented one unusual measurement from producing an unrealistic gain, while the update rate of `0.06` allowed the estimate to follow gradual aging without reacting too strongly to individual samples. After an episode change, the calibration generally settled around the new brightness level within roughly 50 samples.
 
@@ -233,11 +331,35 @@ All of this adaptation happened in the input-calibration layer. The weights of M
 
 The complete pipeline was evaluated over all 4,685 public validation samples using ten aging episodes and seed `123`:
 
-| Metric | Without adaptation | Online calibration |
-|---|---:|---:|
-| Mean positioning error | 7.555 cm | 1.369 cm |
-| Median positioning error | 6.607 cm | 1.201 cm |
-| p95 positioning error | 17.008 cm | 2.921 cm |
+<div class="result-table" role="region" aria-label="Task 4 comparison without adaptation and with online calibration" tabindex="0">
+  <table>
+    <caption>Task 4 comparison without adaptation and with online calibration</caption>
+    <thead>
+      <tr>
+        <th scope="col">Metric</th>
+        <th scope="col">Without adaptation</th>
+        <th scope="col">Online calibration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Mean positioning error</th>
+        <td>7.555 cm</td>
+        <td>1.369 cm</td>
+      </tr>
+      <tr>
+        <th scope="row">Median positioning error</th>
+        <td>6.607 cm</td>
+        <td>1.201 cm</td>
+      </tr>
+      <tr>
+        <th scope="row">p95 positioning error</th>
+        <td>17.008 cm</td>
+        <td>2.921 cm</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Without adaptation, the mean error increased from 2.539 cm in the youngest episode to 11.915 cm in the oldest. With online calibration, the per-episode mean remained between 1.143 cm and 1.678 cm.
 
