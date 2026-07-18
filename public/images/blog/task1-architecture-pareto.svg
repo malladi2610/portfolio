@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Architectural exploration</title>
+  <desc id="desc">Scatter plot of TFLite model size against public validation mean positioning error. The selected 128 by 64 MLP is highlighted as the knee of the Pareto front.</desc>
+
+  <rect width="1200" height="700" fill="#071121"/>
+
+  <text x="110" y="44" fill="#ebf1ff" font-family="Sora, Arial, sans-serif" font-size="26" font-weight="700">
+    Architectural exploration
+  </text>
+  <text x="110" y="70" fill="#9eaccd" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="15">
+    Public validation mean positioning error versus TFLite model size.
+  </text>
+
+  <g stroke="#1f2f4e" stroke-width="1">
+    <line x1="110" y1="80" x2="1080" y2="80"/>
+    <line x1="110" y1="158" x2="1080" y2="158"/>
+    <line x1="110" y1="236" x2="1080" y2="236"/>
+    <line x1="110" y1="314" x2="1080" y2="314"/>
+    <line x1="110" y1="393" x2="1080" y2="393"/>
+    <line x1="110" y1="471" x2="1080" y2="471"/>
+    <line x1="110" y1="549" x2="1080" y2="549"/>
+
+    <line x1="110" y1="80" x2="110" y2="580"/>
+    <line x1="314" y1="80" x2="314" y2="580"/>
+    <line x1="519" y1="80" x2="519" y2="580"/>
+    <line x1="723" y1="80" x2="723" y2="580"/>
+    <line x1="927" y1="80" x2="927" y2="580"/>
+    <line x1="1080" y1="80" x2="1080" y2="580"/>
+  </g>
+
+  <g stroke="#7085b0" stroke-width="1.5">
+    <line x1="110" y1="580" x2="1080" y2="580"/>
+    <line x1="110" y1="80" x2="110" y2="580"/>
+  </g>
+
+  <g fill="#9eaccd" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13">
+    <text x="95" y="553" text-anchor="end">0.75</text>
+    <text x="95" y="475" text-anchor="end">1.00</text>
+    <text x="95" y="397" text-anchor="end">1.25</text>
+    <text x="95" y="318" text-anchor="end">1.50</text>
+    <text x="95" y="240" text-anchor="end">1.75</text>
+    <text x="95" y="162" text-anchor="end">2.00</text>
+    <text x="95" y="84" text-anchor="end">2.25</text>
+
+    <text x="110" y="603" text-anchor="middle">0</text>
+    <text x="314" y="603" text-anchor="middle">40</text>
+    <text x="519" y="603" text-anchor="middle">80</text>
+    <text x="723" y="603" text-anchor="middle">120</text>
+    <text x="927" y="603" text-anchor="middle">160</text>
+    <text x="1080" y="603" text-anchor="middle">190</text>
+  </g>
+
+  <text x="595" y="645" text-anchor="middle" fill="#ccd8f3" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="15" font-weight="600">
+    TFLite model size (KB)
+  </text>
+  <text x="29" y="330" text-anchor="middle" fill="#ccd8f3" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="15" font-weight="600" transform="rotate(-90 29 330)">
+    Mean positioning error (cm)
+  </text>
+
+  <polyline
+    points="174,123 217,254 230,318 319,523 491,531 852,537 1021,545"
+    fill="none"
+    stroke="#7085b0"
+    stroke-width="2.5"
+    stroke-dasharray="7 6"
+  />
+  <g font-family="Plus Jakarta Sans, Arial, sans-serif">
+    <circle cx="174" cy="123" r="7" fill="#cce89a" stroke="#78974b" stroke-width="1.5"/>
+    <text x="188" y="111" fill="#cce89a" font-size="13" font-weight="600">CNN, 8 channels</text>
+
+    <circle cx="217" cy="254" r="7" fill="#cce89a" stroke="#78974b" stroke-width="1.5"/>
+    <text x="232" y="244" fill="#cce89a" font-size="13" font-weight="600">CNN, 16 channels</text>
+
+    <circle cx="230" cy="318" r="7" fill="#d2b7ff" stroke="#8263b4" stroke-width="1.5"/>
+    <text x="244" y="343" fill="#d2b7ff" font-size="13" font-weight="600">CNN and MLP hybrid</text>
+
+    <circle cx="491" cy="531" r="7" fill="#7fa6ff" stroke="#4e7bff" stroke-width="1.5"/>
+    <text x="501" y="511" fill="#a6c3ff" font-size="13" font-weight="600">MLP 128 × 128</text>
+
+    <circle cx="852" cy="537" r="7" fill="#7fa6ff" stroke="#4e7bff" stroke-width="1.5"/>
+    <line x1="852" y1="529" x2="790" y2="507" stroke="#7fa6ff" stroke-width="1"/>
+    <text x="784" y="503" text-anchor="end" fill="#a6c3ff" font-size="13" font-weight="600">MLP 256 × 128</text>
+
+    <circle cx="1021" cy="545" r="7" fill="#7fa6ff" stroke="#4e7bff" stroke-width="1.5"/>
+    <line x1="1021" y1="553" x2="969" y2="570" stroke="#7fa6ff" stroke-width="1"/>
+    <text x="963" y="576" text-anchor="end" fill="#a6c3ff" font-size="13" font-weight="600">MLP 256 × 128 × 64</text>
+
+    <circle cx="319" cy="523" r="13" fill="#071121" stroke="#ebf1ff" stroke-width="3"/>
+    <circle cx="319" cy="523" r="7" fill="#7fa6ff"/>
+    <line x1="319" y1="507" x2="355" y2="454" stroke="#a6c3ff" stroke-width="1.5"/>
+    <rect x="350" y="411" width="236" height="54" rx="8" fill="#101c34" stroke="#7fa6ff" stroke-width="1.5"/>
+    <text x="365" y="434" fill="#ebf1ff" font-size="14" font-weight="700">Selected: MLP 128 × 64</text>
+    <text x="365" y="453" fill="#b6c3e1" font-size="12.5">Knee of the accuracy-size trade-off</text>
+  </g>
+
+  <g font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="13">
+    <circle cx="776" cy="108" r="6" fill="#7fa6ff" stroke="#4e7bff"/>
+    <text x="789" y="113" fill="#ccd8f3">MLP</text>
+    <circle cx="850" cy="108" r="6" fill="#cce89a" stroke="#78974b"/>
+    <text x="863" y="113" fill="#ccd8f3">CNN</text>
+    <circle cx="929" cy="108" r="6" fill="#d2b7ff" stroke="#8263b4"/>
+    <text x="942" y="113" fill="#ccd8f3">Hybrid</text>
+  </g>
+
+  <text x="595" y="680" text-anchor="middle" fill="#9eaccd" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="12">
+    Lower and further left is better.
+  </text>
+</svg>
