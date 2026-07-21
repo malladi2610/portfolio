@@ -65,7 +65,7 @@ The control principle can be stated compactly:
 
 > Worker executes. Observer recommends. State machine authorises. Runtime applies.
 
-![Worker-Observer baseline architecture showing the task contract, runtime, worker, observer, state machine, model and tool boundaries.](/images/blog/think_like_optimisation_engineer/question_1/woa_baseline_architecture.png)
+![Worker-Observer baseline architecture showing the task contract, runtime, worker, observer, state machine, model and tool boundaries.](/images/blog/think_like_optimisation_engineer/question_1/woa_block_diagram_v1.png)
 
 *The WOA baseline separates execution, observation, transition authority, and orchestration.*
 
