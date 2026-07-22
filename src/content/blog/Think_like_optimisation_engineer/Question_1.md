@@ -57,9 +57,11 @@ The `Worker` performs the task. It interacts with models and tools through defin
 
 The `Observer` receives those events and evaluates the direction of the run. It can recognise progress, repetition, deviation, or failure and recommend an appropriate response. It does not directly mutate the worker or runtime.
 
-This limitation is deliberate. An observer may use a model to interpret behaviour, but that model remains probabilistic. Giving it direct control would only relocate the uncertainty. Instead, the `StateMachine` owns transition authority and checks whether a recommendation is legal for the current state.
+This separation is deliberate. The `Observer` monitors the `Worker’s` behaviour and converts the available evidence into a structured recommendation. It cannot change the execution state directly. The `StateMachine` owns transition authority and accepts a recommendation only when it is legal for the current state.
 
-The `Runtime` coordinates the complete control loop. It validates the task, manages queues and timeouts, assigns work, and applies only authorised transitions. `ModelClient` interfaces isolate model providers, while the `ToolRegistry` and tool adapters define which external actions are available and how they are validated. Structured logs preserve the communication and state history so that later questions can examine the run without redesigning the architecture.
+<!-- This limitation is deliberate. An observer may use a model to interpret behaviour, but that model remains probabilistic. Giving it direct control would only relocate the uncertainty. Instead, the `StateMachine` owns transition authority and checks whether a recommendation is legal for the current state. -->
+
+The `Runtime` coordinates the complete control loop. It validates the task, manages queues and timeouts, assigns work, and applies only authorised transitions. `ModelClient` interfaces isolate model providers, while the `ToolRegistry` and tool adapters define which external actions are available and how they are validated. Structured logs preserve the communication and state history so that later questions can examine the run.
 
 The control principle can be stated compactly:
 
@@ -67,7 +69,7 @@ The control principle can be stated compactly:
 
 ![Worker-Observer baseline architecture showing the task contract, runtime, worker, observer, state machine, model and tool boundaries.](/images/blog/think_like_optimisation_engineer/question_1/woa_block_diagram_v1.png)
 
-*The WOA baseline separates execution, observation, transition authority, and orchestration.*
+<!-- *The WOA baseline separates execution, observation, transition authority, and orchestration.* -->
 
 ## Deterministic boundaries around probabilistic components
 
